@@ -3,8 +3,23 @@ import { SessionStarter } from "@/components/student/session-starter"
 import { requireUser } from "@/lib/auth/server"
 import { listBatches, listQuestionSets } from "@/lib/server/app-data"
 
-export default async function NewSessionPage() {
+type NewSessionPageProps = {
+  searchParams: Promise<{
+    batch?: string | string[]
+    questionSet?: string | string[]
+    autostart?: string | string[]
+  }>
+}
+
+function getSingleParam(value?: string | string[]) {
+  return typeof value === "string" ? value : null
+}
+
+export default async function NewSessionPage({
+  searchParams,
+}: NewSessionPageProps) {
   const user = await requireUser()
+  const params = await searchParams
   const batches = await listBatches(user, "active").catch(() => [])
   const questionSetsEntries = await Promise.all(
     batches.map(async (batch) => [
@@ -19,7 +34,13 @@ export default async function NewSessionPage() {
         title="Start Practice Session"
         description="Choose a question set to begin your next mock interview."
       />
-      <SessionStarter batches={batches} questionSetsByBatch={Object.fromEntries(questionSetsEntries)} />
+      <SessionStarter
+        batches={batches}
+        questionSetsByBatch={Object.fromEntries(questionSetsEntries)}
+        preferredBatch={getSingleParam(params.batch)}
+        preferredQuestionSet={getSingleParam(params.questionSet)}
+        shouldAutostart={getSingleParam(params.autostart) === "1"}
+      />
     </div>
   )
 }

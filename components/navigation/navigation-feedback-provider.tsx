@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Suspense,
   createContext,
   useCallback,
   useContext,
@@ -45,6 +46,20 @@ function buildLocationKey(pathname: string, search: string) {
 function normalizeHref(href: string, currentOrigin: string) {
   const url = new URL(href, currentOrigin)
   return `${url.pathname}${url.search}${url.hash}`
+}
+
+function SearchParamsTracker({
+  onChange,
+}: {
+  onChange: (search: string) => void
+}) {
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    onChange(searchParams.toString())
+  }, [onChange, searchParams])
+
+  return null
 }
 
 function NavigationFeedbackOverlay({
@@ -94,8 +109,7 @@ export function NavigationFeedbackProvider({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const search = searchParams.toString()
+  const [search, setSearch] = useState("")
   const locationKey = buildLocationKey(pathname, search)
   const [isTransitionPending, startNavigationTransition] = useTransition()
 
@@ -352,6 +366,9 @@ export function NavigationFeedbackProvider({
 
   return (
     <NavigationFeedbackContext.Provider value={value}>
+      <Suspense fallback={null}>
+        <SearchParamsTracker onChange={setSearch} />
+      </Suspense>
       {children}
       <NavigationFeedbackOverlay navigation={navigation} />
     </NavigationFeedbackContext.Provider>

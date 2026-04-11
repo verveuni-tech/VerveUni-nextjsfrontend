@@ -1,7 +1,6 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { useSearchParams } from "next/navigation"
 import { FolderOpen, Loader2, Play, Sparkles } from "lucide-react"
 import { toast } from "sonner"
 
@@ -34,16 +33,18 @@ function StarterEmptyState({
 export function SessionStarter({
   batches,
   questionSetsByBatch,
+  preferredBatch,
+  preferredQuestionSet,
+  shouldAutostart,
 }: {
   batches: Batch[]
   questionSetsByBatch: Record<string, QuestionSet[]>
+  preferredBatch?: string | null
+  preferredQuestionSet?: string | null
+  shouldAutostart?: boolean
 }) {
   const router = useAppNavigation()
-  const searchParams = useSearchParams()
   const autostartAttemptedRef = useRef(false)
-  const preferredBatch = searchParams.get("batch")
-  const preferredQuestionSet = searchParams.get("questionSet")
-  const shouldAutostart = searchParams.get("autostart") === "1"
   const [selectedBatch, setSelectedBatch] = useState<string | null>(() =>
     preferredBatch && batches.some((batch) => batch.id === preferredBatch)
       ? preferredBatch
