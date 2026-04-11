@@ -1,3 +1,10 @@
+const DEFAULT_API_BASE_URL =
+  "https://educators-surplus-removed-promoting.trycloudflare.com"
+
+function normalizeBaseUrl(value: string) {
+  return value.replace(/\/+$/, "")
+}
+
 export const ROUTES = {
   LOGIN: "/login",
   STUDENT_DASHBOARD: "/student/dashboard",
@@ -62,7 +69,7 @@ export const GRADE_COLORS: Record<string, string> = {
 }
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  normalizeBaseUrl(process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_BASE_URL)
 
 export const FIREBASE_PUBLIC_CONFIG = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "",
