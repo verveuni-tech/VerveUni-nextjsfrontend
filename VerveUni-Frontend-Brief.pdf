@@ -1,0 +1,1852 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R] /Count 16 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Length 1766 >>
+stream
+0.059 0.090 0.165 rg
+0 0 842 595 re f
+0.059 0.463 0.431 rg
+0 513 842 82 re f
+0.078 0.722 0.651 rg
+0 506 842 7 re f
+1.000 1.000 1.000 rg
+BT /F2 13 Tf 54 537 Td (VERVEUNI) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 38 Tf 54 403 Td (Frontend Product and) Tj ET
+1.000 1.000 1.000 rg
+BT /F2 38 Tf 54 358 Td (Implementation Brief) Tj ET
+0.796 0.835 0.882 rg
+BT /F1 15.5 Tf 58 285 Td (A presentation-ready overview of features, user flows, UI implementation,) Tj ET
+0.796 0.835 0.882 rg
+BT /F1 15.5 Tf 58 263 Td (session philosophy, and frontend architecture.) Tj ET
+0.973 0.980 0.988 rg
+58 101 232 88 re f
+0.898 0.906 0.922 RG
+58 101 232 88 re S
+0.078 0.722 0.651 rg
+58 101 5 88 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 163 Td (Scope) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 137 Td (Next.js frontend, Firebase-backed app) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 123.5 Td (APIs, Cloudinary media upload, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 110 Td (role-based product flows.) Tj ET
+0.973 0.980 0.988 rg
+310 101 232 88 re f
+0.898 0.906 0.922 RG
+310 101 232 88 re S
+0.220 0.741 0.973 rg
+310 101 5 88 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 328 163 Td (Audience) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 328 137 Td (Product, leadership, partners,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 328 123.5 Td (instructors, and technical) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 328 110 Td (stakeholders.) Tj ET
+0.973 0.980 0.988 rg
+562 101 222 88 re f
+0.898 0.906 0.922 RG
+562 101 222 88 re S
+0.961 0.620 0.043 rg
+562 101 5 88 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 580 163 Td (Generated) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 580 137 Td (April 8, 2026 from the local) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 580 123.5 Td (verveuni-frontend repository.) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2187 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (EXECUTIVE SUMMARY) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (What VerveUni Frontend Does) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.059 0.463 0.431 rg
+BT /F2 14 Tf 64 447 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 447 Td (VerveUni is an interview practice platform centered on short, recorded mock-interview sessions.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 14 Tf 64 417.24 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 417.24 Td (The frontend separates four audiences: students practice, instructors coach, organization admins) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 398.48 Td (manage cohorts, and platform admins oversee organizations.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 14 Tf 64 368.72 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 368.72 Td (The learning loop is simple: join a batch, choose a question set, answer each prompt by voice,) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 349.96000000000004 Td (upload audio, wait for analysis, review feedback, then practice again.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 14 Tf 64 320.20000000000005 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 320.20000000000005 Td (The implementation uses Next.js App Router, React client components where interactivity is) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 14 Tf 79 301.44000000000005 Td (required, Firebase Auth/Firestore, Cloudinary media upload, and shadcn/Tailwind UI primitives.) Tj ET
+0.925 0.996 1.000 rg
+64 105 715 76 re f
+0.600 0.965 0.894 RG
+64 105 715 76 re S
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 84 151 Td (Core narrative) Tj ET
+0.082 0.369 0.459 rg
+BT /F1 12.2 Tf 84 127 Td (The product turns interview practice into a repeatable feedback loop: prepare the cohort, run a) Tj ET
+0.082 0.369 0.459 rg
+BT /F1 12.2 Tf 84 111 Td (simulated interview, analyze every answer, and show progress at both student and trainer levels.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Executive Summary) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 4595 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (PRODUCT SURFACE) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Feature Inventory) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+54 361 236 92 re f
+0.898 0.906 0.922 RG
+54 361 236 92 re S
+0.059 0.463 0.431 rg
+54 361 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 72 427 Td (Authentication) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 401 Td (Sign in and sign up through Firebase) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 387.5 Td (Auth, sync a secure app session) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 374 Td (cookie, then route users to the) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 360.5 Td (correct home screen.) Tj ET
+0.973 0.980 0.988 rg
+304 361 236 92 re f
+0.898 0.906 0.922 RG
+304 361 236 92 re S
+0.145 0.388 0.922 rg
+304 361 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 322 427 Td (Organization Setup) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 401 Td (Instructors can create or join an) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 387.5 Td (organization with invite codes;) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 374 Td (creators become org admins.) Tj ET
+0.973 0.980 0.988 rg
+554 361 236 92 re f
+0.898 0.906 0.922 RG
+554 361 236 92 re S
+0.851 0.467 0.024 rg
+554 361 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 427 Td (Batches) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 401 Td (Org admins and instructors create) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 387.5 Td (batches, share student join codes,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 374 Td (manage members, and monitor progress.) Tj ET
+0.973 0.980 0.988 rg
+54 253 236 92 re f
+0.898 0.906 0.922 RG
+54 253 236 92 re S
+0.059 0.463 0.431 rg
+54 253 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 72 319 Td (Question Sets) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 293 Td (Question sets group interview prompts) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 279.5 Td (and optional prompt audio for a batch.) Tj ET
+0.973 0.980 0.988 rg
+304 253 236 92 re f
+0.898 0.906 0.922 RG
+304 253 236 92 re S
+0.145 0.388 0.922 rg
+304 253 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 322 319 Td (Live Session) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 293 Td (Students join a full-screen interview,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 279.5 Td (hear/read prompts, record audio) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 266 Td (answers, and finish once every) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 252.5 Td (question is uploaded.) Tj ET
+0.973 0.980 0.988 rg
+554 253 236 92 re f
+0.898 0.906 0.922 RG
+554 253 236 92 re S
+0.851 0.467 0.024 rg
+554 253 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 319 Td (Feedback) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 293 Td (Results combine transcript, delivery) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 279.5 Td (scores, content scores, grade,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 266 Td (strengths, slowdowns, and next focus.) Tj ET
+0.973 0.980 0.988 rg
+54 145 236 92 re f
+0.898 0.906 0.922 RG
+54 145 236 92 re S
+0.059 0.463 0.431 rg
+54 145 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 72 211 Td (Progress) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 185 Td (Students see average score, grade,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 171.5 Td (focus area, recent sessions, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 72 158 Td (completed history.) Tj ET
+0.973 0.980 0.988 rg
+304 145 236 92 re f
+0.898 0.906 0.922 RG
+304 145 236 92 re S
+0.145 0.388 0.922 rg
+304 145 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 322 211 Td (Trainer Analytics) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 185 Td (Instructors see batch metrics, student) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 171.5 Td (rows, leaderboard, detailed student) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 322 158 Td (progress, and CSV export.) Tj ET
+0.973 0.980 0.988 rg
+554 145 236 92 re f
+0.898 0.906 0.922 RG
+554 145 236 92 re S
+0.851 0.467 0.024 rg
+554 145 5 92 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 211 Td (Platform Admin) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 185 Td (Platform admins see organization) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 171.5 Td (directory and user management across) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 158 Td (the platform.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Product Surface) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (3) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 4598 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (ACCESS) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Role Model and Navigation) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 333 174 118 re f
+0.898 0.906 0.922 RG
+58 333 174 118 re S
+0.059 0.463 0.431 rg
+58 333 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 425 Td (Student) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 399 Td (Dashboard, batch join, new) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 385.5 Td (session, live interview) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 372 Td (runner, results, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 358.5 Td (progress.) Tj ET
+0.973 0.980 0.988 rg
+246 333 174 118 re f
+0.898 0.906 0.922 RG
+246 333 174 118 re S
+0.145 0.388 0.922 rg
+246 333 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 264 425 Td (Instructor) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 264 399 Td (Organization onboarding,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 264 385.5 Td (assigned batches, batch) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 264 372 Td (analytics, leaderboard,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 264 358.5 Td (question sets, and student) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 264 345 Td (detail.) Tj ET
+0.973 0.980 0.988 rg
+434 333 174 118 re f
+0.898 0.906 0.922 RG
+434 333 174 118 re S
+0.576 0.200 0.918 rg
+434 333 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 452 425 Td (Org Admin) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 452 399 Td (Everything needed to run an) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 452 385.5 Td (institute workspace:) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 452 372 Td (batches, members, question) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 452 358.5 Td (sets, users, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 452 345 Td (role/status controls.) Tj ET
+0.973 0.980 0.988 rg
+622 333 174 118 re f
+0.898 0.906 0.922 RG
+622 333 174 118 re S
+0.851 0.467 0.024 rg
+622 333 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 640 425 Td (Platform Admin) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 640 399 Td (Cross-organization) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 640 385.5 Td (visibility: organization) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 640 372 Td (directory, member counts,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 640 358.5 Td (active user counts, org) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 640 345 Td (admins, batches, and all) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 640 331.5 Td (users.) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 64 279 Td (Route homes) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 64 249 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 79 249 Td (Student -> /student/dashboard) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 64 225.92000000000002 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 79 225.92000000000002 Td (Instructor -> /trainer/batches) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 64 202.84000000000003 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 79 202.84000000000003 Td (Organization admin -> /admin/batches) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 64 179.76000000000005 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 79 179.76000000000005 Td (Platform admin -> /platform/organizations) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 438 279 Td (Guarding strategy) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 438 249 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 249 Td (Server-side requireUser redirects unauthenticated) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 232.92000000000002 Td (or inactive users to login.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 438 209.84000000000003 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 209.84000000000003 Td (requireRole uses a role hierarchy for broader) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 193.76000000000005 Td (access.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 438 170.68000000000006 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 170.68000000000006 Td (requireExactRole is used where only platform admins) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 154.60000000000008 Td (should enter.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12 Tf 438 131.5200000000001 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 131.5200000000001 Td (Data functions re-check batch membership and) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12 Tf 453 115.44000000000011 Td (organization boundaries.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Access) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (4) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 4049 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (DATA) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Domain Model) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.941 0.992 0.980 rg
+54 371 175 84 re f
+0.796 0.835 0.882 RG
+54 371 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 66 434 Td (Organization) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 412 Td (Top-level institute workspace) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 400.5 Td (with slug, invite code, member) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 389 Td (counts, active members, admins,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 377.5 Td (and batches.) Tj ET
+0.973 0.980 0.988 rg
+248 371 175 84 re f
+0.796 0.835 0.882 RG
+248 371 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 260 434 Td (Batch) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 412 Td (Learning cohort with) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 400.5 Td (organization id, name,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 389 Td (description, status, join code,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 377.5 Td (and assigned question set) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 366 Td (context.) Tj ET
+0.941 0.992 0.980 rg
+442 371 175 84 re f
+0.796 0.835 0.882 RG
+442 371 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 454 434 Td (Batch Member) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 454 412 Td (User-to-batch membership with) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 454 400.5 Td (role: student or instructor.) Tj ET
+0.973 0.980 0.988 rg
+636 371 175 84 re f
+0.796 0.835 0.882 RG
+636 371 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 648 434 Td (Question Set) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 412 Td (A named prompt collection scoped) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 400.5 Td (to organization and batch. Uses) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 389 Td (family such as hr_interview_v1.) Tj ET
+0.941 0.992 0.980 rg
+54 269 175 84 re f
+0.796 0.835 0.882 RG
+54 269 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 66 332 Td (Question) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 310 Td (Prompt body, order, family, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 298.5 Td (optional audio_url / Cloudinary) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 66 287 Td (audio asset.) Tj ET
+0.973 0.980 0.988 rg
+248 269 175 84 re f
+0.796 0.835 0.882 RG
+248 269 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 260 332 Td (Session) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 310 Td (Student attempt against a batch) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 298.5 Td (and question set, with status:) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 287 Td (recording, ready_for_analysis,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 275.5 Td (processing, completed, or) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 260 264 Td (failed.) Tj ET
+0.941 0.992 0.980 rg
+442 269 175 84 re f
+0.796 0.835 0.882 RG
+442 269 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 454 332 Td (Session Answer) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 454 310 Td (Per-question recording state,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 454 298.5 Td (Cloudinary media, transcript,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 454 287 Td (analysis, and upload/analysis) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 454 275.5 Td (status.) Tj ET
+0.973 0.980 0.988 rg
+636 269 175 84 re f
+0.796 0.835 0.882 RG
+636 269 175 84 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 648 332 Td (Progress Summary) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 310 Td (Aggregated completed sessions,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 298.5 Td (average score, delivery/content) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 287 Td (levels, grade, focus area, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 648 275.5 Td (recent sessions.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Data) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (5) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 4913 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (FLOW) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (End-to-End User Flow) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 349 146 96 re f
+0.796 0.835 0.882 RG
+58 349 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 70 424 Td (Sign up / sign in) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 402 Td (Firebase Auth plus app) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 390.5 Td (session cookie.) Tj ET
+0.973 0.980 0.988 rg
+258 349 146 96 re f
+0.796 0.835 0.882 RG
+258 349 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 270 424 Td (Role home) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 402 Td (Redirect to student,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 390.5 Td (trainer, admin, or) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 379 Td (platform area.) Tj ET
+0.973 0.980 0.988 rg
+458 349 146 96 re f
+0.796 0.835 0.882 RG
+458 349 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 470 424 Td (Join or prepare) Tj ET
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 470 411 Td (cohort) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 402 Td (Students enter batch code;) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 390.5 Td (staff create orgs,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 379 Td (batches, members, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 367.5 Td (question sets.) Tj ET
+0.973 0.980 0.988 rg
+658 349 146 96 re f
+0.796 0.835 0.882 RG
+658 349 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 670 424 Td (Start session) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 670 402 Td (Student selects batch and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 670 390.5 Td (question set.) Tj ET
+0.925 0.996 1.000 rg
+658 189 146 96 re f
+0.796 0.835 0.882 RG
+658 189 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 670 264 Td (Live interview) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 670 242 Td (Prompt audio/text,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 670 230.5 Td (60-second answer, upload) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 670 219 Td (each response.) Tj ET
+0.973 0.980 0.988 rg
+458 189 146 96 re f
+0.796 0.835 0.882 RG
+458 189 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 470 264 Td (Analysis wait) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 242 Td (Session marked ready;) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 230.5 Td (frontend polls until) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 470 219 Td (completed or failed.) Tj ET
+0.973 0.980 0.988 rg
+258 189 146 96 re f
+0.796 0.835 0.882 RG
+258 189 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 270 264 Td (Results) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 242 Td (Grade, transcript,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 230.5 Td (delivery/content) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 219 Td (dimensions, feedback, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 270 207.5 Td (next focus.) Tj ET
+0.973 0.980 0.988 rg
+58 189 146 96 re f
+0.796 0.835 0.882 RG
+58 189 146 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 70 264 Td (Progress loop) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 242 Td (Dashboard and trainer) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 230.5 Td (analytics roll completed) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 219 Td (sessions into trends.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 204 397 m 258 397 l S
+0.059 0.463 0.431 RG
+1.5 w 258 397 m 252.08970452148588 393.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 258 397 m 252.08970452148588 400.750787564853 l S
+0.059 0.463 0.431 RG
+1.5 w 404 397 m 458 397 l S
+0.059 0.463 0.431 RG
+1.5 w 458 397 m 452.0897045214859 393.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 458 397 m 452.0897045214859 400.750787564853 l S
+0.059 0.463 0.431 RG
+1.5 w 604 397 m 658 397 l S
+0.059 0.463 0.431 RG
+1.5 w 658 397 m 652.0897045214859 393.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 658 397 m 652.0897045214859 400.750787564853 l S
+0.059 0.463 0.431 RG
+1.5 w 731 349 m 731 285 l S
+0.059 0.463 0.431 RG
+1.5 w 731 285 m 727.249212435147 290.9102954785141 l S
+0.059 0.463 0.431 RG
+1.5 w 731 285 m 734.750787564853 290.9102954785141 l S
+0.059 0.463 0.431 RG
+1.5 w 658 237 m 604 237 l S
+0.059 0.463 0.431 RG
+1.5 w 604 237 m 609.9102954785141 240.750787564853 l S
+0.059 0.463 0.431 RG
+1.5 w 604 237 m 609.9102954785141 233.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 458 237 m 404 237 l S
+0.059 0.463 0.431 RG
+1.5 w 404 237 m 409.9102954785141 240.750787564853 l S
+0.059 0.463 0.431 RG
+1.5 w 404 237 m 409.9102954785141 233.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 258 237 m 204 237 l S
+0.059 0.463 0.431 RG
+1.5 w 204 237 m 209.91029547851412 240.750787564853 l S
+0.059 0.463 0.431 RG
+1.5 w 204 237 m 209.91029547851412 233.249212435147 l S
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Flow) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (6) Tj ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 3662 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (STUDENT EXPERIENCE) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Student Journey) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 337 232 118 re f
+0.898 0.906 0.922 RG
+58 337 232 118 re S
+0.059 0.463 0.431 rg
+58 337 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 429 Td (1. Dashboard and joining) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 403 Td (If the student has no batches, the) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 389.5 Td (dashboard shows a join prompt. Once) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 376 Td (enrolled, it shows sessions completed,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 362.5 Td (average score, current grade, focus) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 349 Td (area, and recent sessions.) Tj ET
+0.973 0.980 0.988 rg
+306 337 232 118 re f
+0.898 0.906 0.922 RG
+306 337 232 118 re S
+0.145 0.388 0.922 rg
+306 337 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 324 429 Td (2. Start practice) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 403 Td (The new-session screen lists active) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 389.5 Td (batches and question sets. Students) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 376 Td (select a set and create a session.) Tj ET
+0.973 0.980 0.988 rg
+554 337 232 118 re f
+0.898 0.906 0.922 RG
+554 337 232 118 re S
+0.851 0.467 0.024 rg
+554 337 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 429 Td (3. Interview runner) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 403 Td (A full-screen call-style UI primes the) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 389.5 Td (microphone, optionally starts camera,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 376 Td (plays question audio or shows text,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 362.5 Td (records each answer, uploads it, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 349 Td (advances.) Tj ET
+0.973 0.980 0.988 rg
+58 187 356 120 re f
+0.898 0.906 0.922 RG
+58 187 356 120 re S
+0.576 0.200 0.918 rg
+58 187 5 120 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 281 Td (4. Results) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 255 Td (When analysis is complete, students see overall grade,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 241.5 Td (analyzed question count, date, strengths, slowdowns, next) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 228 Td (focus items, transcript, score bars, and per-question) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 214.5 Td (feedback.) Tj ET
+0.973 0.980 0.988 rg
+430 187 356 120 re f
+0.898 0.906 0.922 RG
+430 187 356 120 re S
+0.059 0.463 0.431 rg
+430 187 5 120 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 448 281 Td (5. Progress) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 448 255 Td (The progress page aggregates completed sessions into total) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 448 241.5 Td (sessions, score average, delivery average, content average,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 448 228 Td (current standing, focus area, and session history.) Tj ET
+0.996 0.988 0.910 rg
+58 105 728 48 re f
+0.992 0.902 0.541 RG
+58 105 728 48 re S
+0.522 0.302 0.055 rg
+BT /F1 12.5 Tf 77 127 Td (Presenter line: The student experience feels like a mock interview, but the product stores the structured) Tj ET
+0.522 0.302 0.055 rg
+BT /F1 12.5 Tf 77 111 Td (evidence needed for repeatable coaching.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Student Experience) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (7) Tj ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 3377 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (PRACTICE LOOP) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Session Philosophy) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 347 232 108 re f
+0.898 0.906 0.922 RG
+58 347 232 108 re S
+0.059 0.463 0.431 rg
+58 347 5 108 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 429 Td (Simulated presence) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 403 Td (The runner uses an interviewer tile) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 389.5 Td (and a user tile so the session feels) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 376 Td (closer to a live call than a form.) Tj ET
+0.973 0.980 0.988 rg
+306 347 232 108 re f
+0.898 0.906 0.922 RG
+306 347 232 108 re S
+0.145 0.388 0.922 rg
+306 347 5 108 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 324 429 Td (Forward motion) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 403 Td (Questions advance automatically after) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 389.5 Td (prompt playback, recording, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 376 Td (upload. The student is not asked to) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 362.5 Td (manage a multi-step form.) Tj ET
+0.973 0.980 0.988 rg
+554 347 232 108 re f
+0.898 0.906 0.922 RG
+554 347 232 108 re S
+0.851 0.467 0.024 rg
+554 347 5 108 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 429 Td (Short answers) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 403 Td (Each answer has a 60-second cap,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 389.5 Td (making practice focused and easier to) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 376 Td (analyze.) Tj ET
+0.973 0.980 0.988 rg
+58 217 232 108 re f
+0.898 0.906 0.922 RG
+58 217 232 108 re S
+0.059 0.463 0.431 rg
+58 217 5 108 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 299 Td (Audio-first evidence) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 273 Td (The core artifact is a spoken response) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 259.5 Td (uploaded to Cloudinary, then attached) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 246 Td (to a session answer.) Tj ET
+0.973 0.980 0.988 rg
+306 217 232 108 re f
+0.898 0.906 0.922 RG
+306 217 232 108 re S
+0.145 0.388 0.922 rg
+306 217 5 108 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 324 299 Td (Camera as confidence cue) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 273 Td (Camera is optional and local to the) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 259.5 Td (live UI; microphone is required) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 246 Td (because voice is the assessed) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 232.5 Td (artifact.) Tj ET
+0.973 0.980 0.988 rg
+554 217 232 108 re f
+0.898 0.906 0.922 RG
+554 217 232 108 re S
+0.851 0.467 0.024 rg
+554 217 5 108 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 299 Td (Feedback over grading alone) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 273 Td (The analysis model pairs numeric and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 259.5 Td (grade output with strengths,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 246 Td (slowdowns, and the next focus item.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Practice Loop) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (8) Tj ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 20 0 R >>
+endobj
+22 0 obj
+<< /Length 3872 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (TRAINER EXPERIENCE) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Trainer and Organization Flow) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.941 0.992 0.980 rg
+56 357 150 88 re f
+0.796 0.835 0.882 RG
+56 357 150 88 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 68 424 Td (Create or join org) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 68 402 Td (Instructor without) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 68 390.5 Td (organization sees a setup) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 68 379 Td (prompt and can create or) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 68 367.5 Td (join by invite code.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 206 401 m 242 401 l S
+0.059 0.463 0.431 RG
+1.5 w 242 401 m 236.08970452148588 397.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 242 401 m 236.08970452148588 404.750787564853 l S
+0.973 0.980 0.988 rg
+242 357 150 88 re f
+0.796 0.835 0.882 RG
+242 357 150 88 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 254 424 Td (Create batches) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 254 402 Td (Batch setup captures name) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 254 390.5 Td (and description, then) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 254 379 Td (exposes a student join) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 254 367.5 Td (code.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 392 401 m 428 401 l S
+0.059 0.463 0.431 RG
+1.5 w 428 401 m 422.0897045214859 397.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 428 401 m 422.0897045214859 404.750787564853 l S
+0.973 0.980 0.988 rg
+428 357 150 88 re f
+0.796 0.835 0.882 RG
+428 357 150 88 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 440 424 Td (Build prompts) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 440 402 Td (Question sets contain text) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 440 390.5 Td (prompts and optional audio) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 440 379 Td (upload/replace per) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 440 367.5 Td (question.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 578 401 m 614 401 l S
+0.059 0.463 0.431 RG
+1.5 w 614 401 m 608.0897045214859 397.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 614 401 m 608.0897045214859 404.750787564853 l S
+0.925 0.996 1.000 rg
+614 357 150 88 re f
+0.796 0.835 0.882 RG
+614 357 150 88 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 626 424 Td (Monitor) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 626 402 Td (Batch detail shows) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 626 390.5 Td (students, sessions,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 626 379 Td (average score, completion) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 626 367.5 Td (rate, latest status, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 626 356 Td (leaderboard.) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 60 295 Td (Trainer pages and actions) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 60 265 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 75 265 Td (/trainer/batches summarizes assigned batches.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 60 240.25 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 75 240.25 Td (/trainer/batches/new creates a cohort.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 60 215.5 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 75 215.5 Td (/trainer/batches/[batchId] combines invite code, metrics, student progress table, leaderboard, CSV export,) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 75 198.75 Td (and QuestionSetManager.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 60 174 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 75 174 Td (/trainer/students/[studentId] shows individual progress, grade, focus area, and recent sessions.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Trainer Experience) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (9) Tj ET
+endstream
+endobj
+23 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 22 0 R >>
+endobj
+24 0 obj
+<< /Length 3207 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (OPERATIONS) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Admin and Platform Flow) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 331 232 124 re f
+0.898 0.906 0.922 RG
+58 331 232 124 re S
+0.576 0.200 0.918 rg
+58 331 5 124 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 429 Td (Organization admin) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 403 Td (Runs a single organization: list) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 389.5 Td (batches, create batches, inspect batch) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 376 Td (status, manage members, add/remove) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 362.5 Td (students and instructors, manage) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 349 Td (question sets, and update user roles) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 335.5 Td (or active status.) Tj ET
+0.973 0.980 0.988 rg
+306 331 232 124 re f
+0.898 0.906 0.922 RG
+306 331 232 124 re S
+0.851 0.467 0.024 rg
+306 331 5 124 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 324 429 Td (Platform admin) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 403 Td (Sees cross-organization operations:) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 389.5 Td (organization directory with slug,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 376 Td (invite code, member counts, active) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 362.5 Td (users, org admins, batches, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 349 Td (all-user management.) Tj ET
+0.973 0.980 0.988 rg
+554 331 232 124 re f
+0.898 0.906 0.922 RG
+554 331 232 124 re S
+0.059 0.463 0.431 rg
+554 331 5 124 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 429 Td (Shared management widgets) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 403 Td (The same question-set manager and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 389.5 Td (user-management patterns are reused) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 376 Td (across admin and trainer contexts to) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 362.5 Td (keep staff workflows consistent.) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 64 275 Td (Operational controls) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 245 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 245 Td (Invite codes are the main onboarding mechanism for organizations and batches.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 220.25 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 220.25 Td (Role labels are explicit: Platform Admin, Organization Admin, Instructor, Student.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 195.5 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 195.5 Td (Users can be activated or deactivated from the management table.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 170.75 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 170.75 Td (Admins and instructors can add existing users to batches by email and role.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Operations) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (10) Tj ET
+endstream
+endobj
+25 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 24 0 R >>
+endobj
+26 0 obj
+<< /Length 3400 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (FRONTEND ARCHITECTURE) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (UI Implementation) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 337 232 118 re f
+0.898 0.906 0.922 RG
+58 337 232 118 re S
+0.067 0.094 0.153 rg
+58 337 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 429 Td (Framework) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 403 Td (Next.js App Router with route groups) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 389.5 Td (for auth, student, trainer, admin,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 376 Td (platform, and API routes. Server pages) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 362.5 Td (fetch data; client components handle) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 349 Td (live interaction.) Tj ET
+0.973 0.980 0.988 rg
+306 337 232 118 re f
+0.898 0.906 0.922 RG
+306 337 232 118 re S
+0.059 0.463 0.431 rg
+306 337 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 324 429 Td (Design system) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 403 Td (shadcn/base-nova style, Tailwind CSS) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 389.5 Td (variables, neutral palette, lucide) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 376 Td (icons, Base UI primitives, cards,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 362.5 Td (tables, tabs, dialogs, sidebar, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 349 Td (toast feedback.) Tj ET
+0.973 0.980 0.988 rg
+554 337 232 118 re f
+0.898 0.906 0.922 RG
+554 337 232 118 re S
+0.145 0.388 0.922 rg
+554 337 5 118 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 429 Td (Shell) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 403 Td (Authenticated routes use AppShell with) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 389.5 Td (role-aware sidebar, topbar role chip,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 376 Td (sign out flow, and consistent content) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 362.5 Td (padding.) Tj ET
+0.973 0.980 0.988 rg
+58 187 356 116 re f
+0.898 0.906 0.922 RG
+58 187 356 116 re S
+0.851 0.467 0.024 rg
+58 187 5 116 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 277 Td (Session runner UI) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 251 Td (The live interview intentionally departs from the dashboard) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 237.5 Td (shell: fixed full-screen dark surface, call timer,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 224 Td (interviewer/user tiles, recording indicator, per-question) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 210.5 Td (progress, and a bottom call control.) Tj ET
+0.973 0.980 0.988 rg
+430 187 356 116 re f
+0.898 0.906 0.922 RG
+430 187 356 116 re S
+0.576 0.200 0.918 rg
+430 187 5 116 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 448 277 Td (State feedback) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 448 251 Td (Empty states, loading skeletons, status badges, grade badges,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 448 237.5 Td (score bars, form validation, toasts, retry bar, and polling) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 448 224 Td (overlays make the app explain its state.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Frontend Architecture) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (11) Tj ET
+endstream
+endobj
+27 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 26 0 R >>
+endobj
+28 0 obj
+<< /Length 3896 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (SYSTEMS) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Integration Architecture) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+72 349 150 96 re f
+0.796 0.835 0.882 RG
+72 349 150 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 84 424 Td (Browser) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 84 402 Td (React UI, Firebase client) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 84 390.5 Td (auth, MediaRecorder,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 84 379 Td (camera preview, Cloudinary) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 84 367.5 Td (upload form.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 222 397 m 272 397 l S
+0.059 0.463 0.431 RG
+1.5 w 272 397 m 266.0897045214859 393.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 272 397 m 266.0897045214859 400.750787564853 l S
+0.925 0.996 1.000 rg
+272 349 150 96 re f
+0.796 0.835 0.882 RG
+272 349 150 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 284 424 Td (Next API) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 284 402 Td (/api/auth/session,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 284 390.5 Td (/api/auth/logout,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 284 379 Td (/api/app/* route handlers.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 422 397 m 472 397 l S
+0.059 0.463 0.431 RG
+1.5 w 472 397 m 466.0897045214859 393.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 472 397 m 466.0897045214859 400.750787564853 l S
+0.941 0.992 0.980 rg
+472 349 150 96 re f
+0.796 0.835 0.882 RG
+472 349 150 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 484 424 Td (Firebase) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 484 402 Td (Admin Auth verifies token;) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 484 390.5 Td (Firestore stores users,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 484 379 Td (orgs, batches, sessions,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 484 367.5 Td (answers, analyses.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 622 397 m 672 397 l S
+0.059 0.463 0.431 RG
+1.5 w 672 397 m 666.0897045214859 393.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 672 397 m 666.0897045214859 400.750787564853 l S
+1.000 0.969 0.929 rg
+672 349 120 96 re f
+0.796 0.835 0.882 RG
+672 349 120 96 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 684 424 Td (Cloudinary) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 684 402 Td (Question audio and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 684 390.5 Td (answer recordings as) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 684 379 Td (media assets.) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 72 285 Td (Implementation notes) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.3 Tf 72 255 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.3 Tf 87 255 Td (Client API calls attach a bearer token when available and default to no-store for fresh app state.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.3 Tf 72 230.51799999999997 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.3 Tf 87 230.51799999999997 Td (Server-side pages read the access token cookie and use Firebase Admin to load current user state.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.3 Tf 72 206.03599999999994 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.3 Tf 87 206.03599999999994 Td (Media upload is two-step: get a signed upload payload, upload to Cloudinary, then submit the resulting) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.3 Tf 87 189.55399999999992 Td (asset metadata to the app API.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.3 Tf 72 165.0719999999999 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.3 Tf 87 165.0719999999999 Td (The Next config rewrites /api/v1/* to a local backend API, while the current app routes implement) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.3 Tf 87 148.58999999999986 Td (/api/app/* directly.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Systems) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (12) Tj ET
+endstream
+endobj
+29 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 28 0 R >>
+endobj
+30 0 obj
+<< /Length 4971 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (SESSION LIFECYCLE) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Session Processing Pipeline) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 323 112 116 re f
+0.796 0.835 0.882 RG
+58 323 112 116 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 70 418 Td (Create session) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 396 Td (Student, batch,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 384.5 Td (question set,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 373 Td (question snapshot,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 70 361.5 Td (answer docs.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 170 381 m 192 381 l S
+0.059 0.463 0.431 RG
+1.5 w 192 381 m 186.08970452148588 377.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 192 381 m 186.08970452148588 384.750787564853 l S
+0.973 0.980 0.988 rg
+192 323 112 116 re f
+0.796 0.835 0.882 RG
+192 323 112 116 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 204 418 Td (Record answer) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 204 396 Td (MediaRecorder) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 204 384.5 Td (captures webm/opus) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 204 373 Td (in 250 ms chunks.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 304 381 m 326 381 l S
+0.059 0.463 0.431 RG
+1.5 w 326 381 m 320.0897045214859 377.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 326 381 m 320.0897045214859 384.750787564853 l S
+0.925 0.996 1.000 rg
+326 323 112 116 re f
+0.796 0.835 0.882 RG
+326 323 112 116 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 338 418 Td (Upload answer) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 338 396 Td (Cloudinary upload,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 338 384.5 Td (then) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 338 373 Td (sessionAnswers) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 338 361.5 Td (updated with media) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 338 350 Td (metadata.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 438 381 m 460 381 l S
+0.059 0.463 0.431 RG
+1.5 w 460 381 m 454.0897045214859 377.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 460 381 m 454.0897045214859 384.750787564853 l S
+0.925 0.996 1.000 rg
+460 323 112 116 re f
+0.796 0.835 0.882 RG
+460 323 112 116 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 472 418 Td (Mark ready) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 472 396 Td (All answers must) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 472 384.5 Td (be uploaded before) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 472 373 Td (ready_for_analysis.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 572 381 m 594 381 l S
+0.059 0.463 0.431 RG
+1.5 w 594 381 m 588.0897045214859 377.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 594 381 m 588.0897045214859 384.750787564853 l S
+0.973 0.980 0.988 rg
+594 323 112 116 re f
+0.796 0.835 0.882 RG
+594 323 112 116 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 606 418 Td (Poll) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 606 396 Td (Frontend polls) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 606 384.5 Td (every 3 seconds) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 606 373 Td (until completed or) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 606 361.5 Td (failed.) Tj ET
+0.059 0.463 0.431 RG
+1.5 w 706 381 m 728 381 l S
+0.059 0.463 0.431 RG
+1.5 w 728 381 m 722.0897045214859 377.249212435147 l S
+0.059 0.463 0.431 RG
+1.5 w 728 381 m 722.0897045214859 384.750787564853 l S
+0.973 0.980 0.988 rg
+728 323 112 116 re f
+0.796 0.835 0.882 RG
+728 323 112 116 re S
+0.059 0.090 0.165 rg
+BT /F2 11.2 Tf 740 418 Td (Review) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 740 396 Td (Results page) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 740 384.5 Td (calculates average) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 740 373 Td (grade and displays) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 740 361.5 Td (per-answer) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 9.2 Tf 740 350 Td (analysis.) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 66 269 Td (Status model) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.4 Tf 66 239 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.4 Tf 81 239 Td (Session statuses: draft, recording, ready_for_analysis, processing, completed, failed.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.4 Tf 66 214.38400000000001 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.4 Tf 81 214.38400000000001 Td (Answer statuses: pending_upload, uploaded, processing, analyzed, failed.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.4 Tf 66 189.76800000000003 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.4 Tf 81 189.76800000000003 Td (The student cannot complete analysis until every answer has been uploaded.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.4 Tf 66 165.15200000000004 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.4 Tf 81 165.15200000000004 Td (Completed sessions drive dashboards, grade, trend data, and trainer metrics.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Session Lifecycle) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (13) Tj ET
+endstream
+endobj
+31 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 30 0 R >>
+endobj
+32 0 obj
+<< /Length 3391 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (ANALYTICS) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Measurement and Feedback Model) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.973 0.980 0.988 rg
+58 331 232 124 re f
+0.898 0.906 0.922 RG
+58 331 232 124 re S
+0.059 0.463 0.431 rg
+58 331 5 124 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 76 429 Td (Answer analysis) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 403 Td (Each answer may include) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 389.5 Td (delivery_scores, content_scores,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 376 Td (overall_score, grade, transcript, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 76 362.5 Td (feedback detail.) Tj ET
+0.973 0.980 0.988 rg
+306 331 232 124 re f
+0.898 0.906 0.922 RG
+306 331 232 124 re S
+0.145 0.388 0.922 rg
+306 331 5 124 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 324 429 Td (Feedback detail) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 403 Td (The app presents strengths, slowdowns,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 389.5 Td (and next_focus so the learner knows) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 376 Td (what to preserve, what to improve, and) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 324 362.5 Td (what to practice next.) Tj ET
+0.973 0.980 0.988 rg
+554 331 232 124 re f
+0.898 0.906 0.922 RG
+554 331 232 124 re S
+0.851 0.467 0.024 rg
+554 331 5 124 re f
+0.067 0.094 0.153 rg
+BT /F2 13 Tf 572 429 Td (Progress summary) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 403 Td (Completed sessions roll up to average) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 389.5 Td (score, delivery/content averages,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 376 Td (current grade, focus area, trend data,) Tj ET
+0.278 0.333 0.412 rg
+BT /F1 10.3 Tf 572 362.5 Td (and recent sessions.) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 64 277 Td (Grade thresholds) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 247 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 247 Td (A: 85 and above) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 224.25 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 224.25 Td (B: 70 to 84) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 201.5 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 201.5 Td (C: 55 to 69) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 178.75 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 178.75 Td (D: 40 to 54) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 64 156 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 79 156 Td (F: below 40) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 420 277 Td (Level-to-score mapping) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 420 247 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 435 247 Td (strong -> 90) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 420 224.25 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 435 224.25 Td (progressing -> 70) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 420 201.5 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 435 201.5 Td (developing -> 50) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 12.5 Tf 420 178.75 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 12.5 Tf 435 178.75 Td (weak -> 30) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Analytics) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (14) Tj ET
+endstream
+endobj
+33 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 32 0 R >>
+endobj
+34 0 obj
+<< /Length 2543 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (IMPLEMENTATION QUALITY) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Reliability, Edge Cases, and Safety) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 449 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 449 Td (Auth and authorization are checked both at page boundaries and inside server data functions.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 423.58 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 423.58 Td (Inactive users are redirected out during requireUser.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 398.15999999999997 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 398.15999999999997 Td (Batch access is checked by platform role, organization membership, or explicit batch membership.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 372.73999999999995 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 372.73999999999995 Td (Empty states cover no batches, no sessions, no question sets, no users, no organizations, and missing) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 355.31999999999994 Td (progress data.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 329.8999999999999 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 329.8999999999999 Td (The live session has explicit error and retry behavior for upload failures and prompt playback problems.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 304.4799999999999 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 304.4799999999999 Td (Question sets cannot start a session if they contain no questions.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 279.0599999999999 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 279.0599999999999 Td (CSV export gives trainers/admins a portable batch progress snapshot.) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 13 Tf 64 253.63999999999987 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 253.63999999999987 Td (Known tooling note for this generated PDF: Python/reportlab and Poppler were not installed in this) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 236.21999999999986 Td (environment, so generation used a dependency-free Node PDF writer and visual PNG rendering could not be) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 13 Tf 79 218.79999999999984 Td (run here.) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Implementation Quality) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (15) Tj ET
+endstream
+endobj
+35 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 34 0 R >>
+endobj
+36 0 obj
+<< /Length 3619 >>
+stream
+1.000 1.000 1.000 rg
+0 0 842 595 re f
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 557 Td (APPENDIX) Tj ET
+0.067 0.094 0.153 rg
+BT /F2 27 Tf 48 529 Td (Source Anchors) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 483 m 794 483 l S
+0.067 0.094 0.153 rg
+BT /F2 14 Tf 64 451 Td (Key files used to prepare this brief) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 417 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 417 Td (app/\(auth\)/login/page.tsx - auth and onboarding entry) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 398.528 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 398.528 Td (components/layout/app-sidebar.tsx - role-aware navigation) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 380.056 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 380.056 Td (lib/types/index.ts - domain model) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 361.58399999999995 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 361.58399999999995 Td (lib/server/app-data.ts - Firestore data operations and access checks) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 343.11199999999997 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 343.11199999999997 Td (components/student/session-starter.tsx - start practice flow) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 324.64 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 324.64 Td (components/student/session-runner.tsx - live interview experience) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 306.168 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 306.168 Td (hooks/use-audio-recorder.ts - MediaRecorder flow) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 287.696 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 287.696 Td (hooks/use-upload-answer.ts - Cloudinary answer upload) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 269.22400000000005 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 269.22400000000005 Td (components/student/results-tabs.tsx - answer feedback UI) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 250.75200000000007 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 250.75200000000007 Td (app/\(student\)/student/dashboard/page.tsx - student summary) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 232.2800000000001 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 232.2800000000001 Td (app/\(student\)/student/progress/page.tsx - progress page) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 213.8080000000001 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 213.8080000000001 Td (components/trainer/question-set-manager.tsx - prompt and audio management) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 195.33600000000013 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 195.33600000000013 Td (app/\(trainer\)/trainer/batches/[batchId]/page.tsx - trainer batch analytics) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 176.86400000000015 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 176.86400000000015 Td (components/admin/user-management-table.tsx - role and status management) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 158.39200000000017 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 158.39200000000017 Td (app/\(platform\)/platform/organizations/page.tsx - platform org directory) Tj ET
+0.059 0.463 0.431 rg
+BT /F2 10.8 Tf 64 139.9200000000002 Td (-) Tj ET
+0.216 0.255 0.318 rg
+BT /F1 10.8 Tf 79 139.9200000000002 Td (app/globals.css and components.json - design token and shadcn setup) Tj ET
+0.898 0.906 0.922 RG
+1 w 48 43 m 794 43 l S
+0.392 0.455 0.545 rg
+BT /F2 8.5 Tf 48 24 Td (VerveUni Frontend Brief) Tj ET
+0.580 0.639 0.722 rg
+BT /F1 8.5 Tf 368 24 Td (Appendix) Tj ET
+0.392 0.455 0.545 rg
+BT /F1 8.5 Tf 770 24 Td (16) Tj ET
+endstream
+endobj
+37 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 36 0 R >>
+endobj
+xref
+0 38
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000226 00000 n 
+0000000296 00000 n 
+0000000371 00000 n 
+0000000439 00000 n 
+0000002257 00000 n 
+0000002403 00000 n 
+0000004642 00000 n 
+0000004788 00000 n 
+0000009436 00000 n 
+0000009584 00000 n 
+0000014235 00000 n 
+0000014383 00000 n 
+0000018485 00000 n 
+0000018633 00000 n 
+0000023599 00000 n 
+0000023747 00000 n 
+0000027462 00000 n 
+0000027610 00000 n 
+0000031040 00000 n 
+0000031188 00000 n 
+0000035113 00000 n 
+0000035261 00000 n 
+0000038521 00000 n 
+0000038669 00000 n 
+0000042122 00000 n 
+0000042270 00000 n 
+0000046219 00000 n 
+0000046367 00000 n 
+0000051391 00000 n 
+0000051539 00000 n 
+0000054983 00000 n 
+0000055131 00000 n 
+0000057727 00000 n 
+0000057875 00000 n 
+0000061547 00000 n 
+trailer
+<< /Size 38 /Root 1 0 R >>
+startxref
+61695
+%%EOF
