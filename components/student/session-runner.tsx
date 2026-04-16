@@ -5,7 +5,6 @@ import {
   AlertCircle,
   AudioLines,
   Check,
-  Clock3,
   Loader2,
   Lock,
   Mic,
@@ -25,27 +24,21 @@ import { ROUTES, SESSION_ROOM_IMAGE_URL } from "@/lib/constants"
 import type { Question, Session, SessionAnswer } from "@/lib/types"
 
 const ANSWER_LIMIT_SECONDS = 60
-const PREP_COUNTDOWN_SECONDS = 5
 const CONNECTING_DURATION_MS = 1400
-const TRANSITION_DELAY_MS = 1200
 const PROMPT_AUDIO_LOAD_TIMEOUT_MS = 5500
 const TEXT_ONLY_PROMPT_MIN_MS = 3200
 const TEXT_ONLY_PROMPT_MAX_MS = 11000
-const URGENCY_THRESHOLD_SECONDS = 15
 
 type SessionStage =
   | "intro"
   | "prompt"
-  | "prep"
   | "recording"
   | "uploading"
-  | "transition"
   | "finishing"
   | "processing"
   | "error"
 
 type InterviewerStatus = "idle" | "speaking" | "thinking" | "listening"
-type PromptDelivery = "audio" | "voice" | "text"
 
 function getAnsweredQuestionIds(session: Session) {
   return new Set(
@@ -64,9 +57,7 @@ function getInitialQuestionIndex(session: Session, questions: Question[]) {
 function formatTime(totalSeconds: number): string {
   const minutes = Math.floor(totalSeconds / 60)
   const seconds = totalSeconds % 60
-  return `${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`
 }
 
 function estimatePromptDurationMs(text: string) {
@@ -76,29 +67,6 @@ function estimatePromptDurationMs(text: string) {
     TEXT_ONLY_PROMPT_MAX_MS,
     Math.max(TEXT_ONLY_PROMPT_MIN_MS, estimated)
   )
-}
-
-function stageLabel(stage: SessionStage) {
-  switch (stage) {
-    case "prompt":
-      return "Prompt"
-    case "prep":
-      return "Answer window"
-    case "recording":
-      return "Recording"
-    case "uploading":
-      return "Saving"
-    case "transition":
-      return "Next question"
-    case "finishing":
-      return "Finalizing"
-    case "processing":
-      return "Analysis"
-    case "error":
-      return "Attention"
-    default:
-      return "In session"
-  }
 }
 
 function AnimatedDots() {
@@ -135,43 +103,6 @@ function SignalBars({ active }: { active: boolean }) {
   )
 }
 
-function PromptMeter({
-  progress,
-  delivery,
-  hasAudio,
-  tone = "light",
-}: {
-  progress: number
-  delivery: PromptDelivery
-  hasAudio: boolean
-  tone?: "light" | "dark"
-}) {
-  const label =
-    delivery === "audio" && hasAudio
-      ? "Interviewer audio"
-      : delivery === "voice"
-        ? "System voice"
-        : "Prompt window"
-  const metaClasses =
-    tone === "dark" ? "text-white/58" : "text-foreground/55"
-  const trackClasses = tone === "dark" ? "bg-white/12" : "bg-black/[0.08]"
-
-  return (
-    <div className="space-y-2">
-      <div className={`flex items-center justify-between text-xs ${metaClasses}`}>
-        <span>{label}</span>
-        <span>{Math.round(progress)}%</span>
-      </div>
-      <div className={`h-2 overflow-hidden rounded-md ${trackClasses}`}>
-        <div
-          className="h-full rounded-md bg-[#9aa478] transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
-  )
-}
-
 function ConnectingOverlay() {
   return (
     <div className="relative grid h-full place-items-center overflow-hidden bg-[#ece8df] px-6 text-white">
@@ -190,9 +121,7 @@ function ConnectingOverlay() {
             <p className="text-xs font-medium tracking-[0.18em] text-white/68 uppercase">
               VerveUni Interview Suite
             </p>
-            <h1 className="text-3xl font-semibold">
-              Preparing your interview room
-            </h1>
+            <h1 className="text-3xl font-semibold">Joining interview</h1>
           </div>
         </div>
 
@@ -201,7 +130,7 @@ function ConnectingOverlay() {
         </div>
 
         <p className="max-w-lg text-sm leading-7 text-white/72">
-          Loading question audio, camera presence, and response capture
+          Setting up the room
           <AnimatedDots />
         </p>
       </div>
@@ -238,13 +167,13 @@ function ReadyOverlay({
               Structured Interview
             </div>
             <div className="space-y-4">
-              <p className="text-sm text-white/62">Ready room</p>
+              <p className="text-sm text-white/62">Interview room</p>
               <h1 className="text-4xl leading-tight font-semibold text-white sm:text-6xl">
                 {title}
               </h1>
               <p className="max-w-xl text-base leading-7 text-white/72">
-                A controlled practice environment built to feel closer to a real
-                interview table than a generic meeting screen.
+                The interviewer asks each question, then your answer starts
+                immediately. No countdowns, pauses, or retakes.
               </p>
             </div>
           </div>
@@ -276,9 +205,10 @@ function ReadyOverlay({
             <div className="space-y-5 border border-white/16 bg-black/28 p-5 backdrop-blur-sm">
               <div className="space-y-3">
                 {[
-                  "Prompt audio leads each question",
-                  "Responses save while the session continues",
-                  "Final submission happens after the last answer",
+                  "Answer as soon as the interviewer finishes",
+                  "Keep each response direct and natural",
+                  "The interview moves forward question by question",
+                  "No retakes during the run",
                 ].map((item) => (
                   <div
                     key={item}
@@ -300,12 +230,11 @@ function ReadyOverlay({
                 ) : (
                   <Mic className="h-4 w-4" />
                 )}
-                {isLoading ? "Preparing devices" : "Begin session"}
+                {isLoading ? "Checking devices" : "Begin interview"}
               </button>
 
               <p className="text-xs leading-5 text-white/48">
-                Microphone access is required. Camera presence is used when
-                available.
+                Allow microphone access when asked so the interview can begin.
               </p>
 
               {error ? (
@@ -363,30 +292,30 @@ function ProcessingOverlay({ sessionId }: { sessionId: string }) {
           </div>
           <div>
             <p className="text-sm text-foreground/48">
-              {failed ? "Analysis failed" : "Interview sealed"}
+              {failed ? "Feedback delayed" : "Interview complete"}
             </p>
             <h1 className="text-3xl font-semibold text-foreground">
-              {failed ? "Analysis could not finish" : "Preparing your feedback"}
+              {failed ? "Feedback could not finish" : "Preparing your feedback"}
             </h1>
           </div>
         </div>
 
         <p className="relative max-w-lg text-sm leading-6 text-foreground/62">
           {failed
-            ? "Your responses were submitted, but the scoring pipeline did not complete."
-            : "Your answers are being transcribed and scored. Keep this tab open while the report is prepared."}
+            ? "Your responses were submitted, but feedback is not ready yet."
+            : "Your responses are being reviewed. Keep this tab open while feedback is prepared."}
         </p>
 
         {!failed ? (
           <div className="relative grid gap-3 border border-black/10 bg-white/72 p-4 backdrop-blur-sm">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-foreground/58">Uploads locked</span>
+              <span className="text-foreground/58">Responses received</span>
               <span className="font-mono tabular-nums">
                 {uploadedAnswers}/{totalAnswers || uploadedAnswers}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-foreground/58">Answers analyzed</span>
+              <span className="text-foreground/58">Feedback progress</span>
               <span className="font-mono tabular-nums">
                 {analyzedAnswers}/{totalAnswers || analyzedAnswers}
               </span>
@@ -401,29 +330,22 @@ function ProcessingOverlay({ sessionId }: { sessionId: string }) {
 function InterviewerTile({
   status,
   statusText,
-  promptProgress,
-  hasAudio,
-  promptDelivery,
-  stage,
+  remainingSeconds,
 }: {
   status: InterviewerStatus
   statusText: string
-  promptProgress: number
-  hasAudio: boolean
-  promptDelivery: PromptDelivery
-  stage: SessionStage
+  remainingSeconds: number
 }) {
   const isSpeaking = status === "speaking"
+  const isListening = status === "listening"
+  const isActive = isSpeaking || isListening
   const indicatorClasses =
-    stage === "error"
-      ? "bg-[#ff7a87]"
-      : isSpeaking
-        ? "animate-pulse bg-[#9aa478]"
-        : status === "thinking"
-          ? "bg-[#f2d48b]"
-          : "bg-white/28"
-  const stateLabel =
-    isSpeaking ? "Live" : status === "thinking" ? "Sync" : "Standby"
+    status === "idle"
+      ? "bg-white/24"
+      : status === "thinking"
+        ? "bg-[#f2d48b]"
+        : "animate-pulse bg-[#9aa478]"
+  const showTimer = isListening
 
   return (
     <section className="absolute top-4 right-4 z-20 w-[168px] overflow-hidden rounded-[24px] border border-white/12 bg-[#111315]/78 p-3 text-white shadow-[0_24px_80px_-36px_rgba(0,0,0,0.92)] backdrop-blur-xl sm:top-6 sm:right-6 sm:w-[240px] sm:p-4">
@@ -438,136 +360,56 @@ function InterviewerTile({
               {statusText}
             </p>
           </div>
-          <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${indicatorClasses}`} />
+          <span
+            className={`h-2.5 w-2.5 shrink-0 rounded-full ${indicatorClasses}`}
+          />
         </div>
 
         <div className="overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] p-3">
-          <div className="flex aspect-[4/5] flex-col items-center justify-center gap-4 rounded-[16px] bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))]">
+          <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-4 overflow-hidden rounded-[16px] bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))]">
+            <div
+              className={`absolute inset-x-4 top-1/2 h-20 -translate-y-1/2 rounded-full bg-[#9aa478]/18 blur-2xl transition-opacity duration-500 ${
+                isActive ? "animate-pulse opacity-100" : "opacity-30"
+              }`}
+            />
             <div className="grid h-12 w-12 place-items-center rounded-[16px] border border-white/12 bg-black/18 sm:h-14 sm:w-14">
               <AudioLines className="h-5 w-5 text-white/82 sm:h-6 sm:w-6" />
             </div>
-            <div className="scale-75 sm:scale-100">
-              <SignalBars active={isSpeaking} />
+            <div className="relative scale-75 sm:scale-100">
+              <SignalBars active={isActive} />
             </div>
           </div>
         </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-[0.65rem] font-medium tracking-[0.18em] text-white/38 uppercase">
-            <span>{stageLabel(stage)}</span>
-            <span>{stateLabel}</span>
+        {showTimer ? (
+          <div className="text-right text-sm font-medium text-white/72">
+            {formatTime(remainingSeconds)} left
           </div>
-
-          {stage === "prompt" ? (
-            <PromptMeter
-              progress={promptProgress}
-              delivery={promptDelivery}
-              hasAudio={hasAudio}
-              tone="dark"
-            />
-          ) : null}
-        </div>
+        ) : null}
       </div>
     </section>
   )
 }
 
 function QuestionOverlay({
-  currentIndex,
-  totalQuestions,
   questionBody,
   stage,
-  prepCountdown,
-  remainingSeconds,
-  promptProgress,
-  hasAudio,
-  promptDelivery,
 }: {
-  currentIndex: number
-  totalQuestions: number
   questionBody: string
   stage: SessionStage
-  prepCountdown: number
-  remainingSeconds: number
-  promptProgress: number
-  hasAudio: boolean
-  promptDelivery: PromptDelivery
 }) {
-  const questionNumber = Math.min(currentIndex + 1, totalQuestions)
-  const isUrgent =
-    stage === "recording" && remainingSeconds <= URGENCY_THRESHOLD_SECONDS
-  const detail =
-    stage === "prompt"
-      ? hasAudio
-        ? "Listen to the interviewer before you respond."
-        : promptDelivery === "voice"
-          ? "The system voice is reading the question now."
-          : "Read the question carefully before the recording opens."
-      : stage === "prep"
-        ? `Recording opens in ${prepCountdown}s. Keep your answer direct and clear.`
-      : stage === "recording"
-        ? `Your answer window is live. ${formatTime(remainingSeconds)} remaining.`
-      : stage === "uploading"
-        ? "Saving your response while the next question is prepared."
-      : stage === "transition"
-        ? "Next question is about to begin."
-      : stage === "finishing"
-        ? "Wrapping up the interview and sealing your responses."
-      : stage === "error"
-        ? "The session needs attention before it can continue."
-      : "Stay ready."
-  const pillLabel =
-    stage === "recording"
-      ? `${formatTime(remainingSeconds)} left`
-      : stage === "prep"
-        ? `Starts in ${prepCountdown}s`
-        : stageLabel(stage)
-
   return (
     <section className="absolute right-4 bottom-4 left-4 z-20 sm:right-auto sm:bottom-6 sm:left-6 sm:max-w-[540px]">
       <div className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[#111315]/76 p-5 text-white shadow-[0_28px_96px_-40px_rgba(0,0,0,0.92)] backdrop-blur-xl sm:p-6">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(154,164,120,0.22),_transparent_58%)]" />
-        <div className="relative space-y-4">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="min-w-0 flex-1">
-              <p className="text-[0.68rem] font-medium tracking-[0.22em] text-white/44 uppercase">
-                Question {questionNumber}
-              </p>
-              <p className="mt-2 text-lg leading-snug font-medium text-white sm:text-2xl">
-                {questionBody}
-              </p>
-            </div>
-
-            <div
-              className={`shrink-0 rounded-full border px-3.5 py-2 text-sm font-medium backdrop-blur-sm ${
-                isUrgent
-                  ? "border-[#ff7a87]/35 bg-[#ff7a87]/18 text-[#ffd7dc]"
-                  : "border-white/12 bg-white/[0.04] text-white/78"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                {stage === "recording" ? <Clock3 className="h-4 w-4" /> : null}
-                <span>{pillLabel}</span>
-              </div>
-            </div>
-          </div>
-
+        <div className="relative">
           <p
-            className={`text-sm leading-6 ${
-              isUrgent ? "text-[#ffd7dc]" : "text-white/62"
+            className={`text-lg leading-snug font-medium text-white sm:text-2xl ${
+              stage === "prompt" ? "animate-pulse" : ""
             }`}
           >
-            {detail}
+            {questionBody}
           </p>
-
-          {stage === "prompt" ? (
-            <PromptMeter
-              progress={promptProgress}
-              delivery={promptDelivery}
-              hasAudio={hasAudio}
-              tone="dark"
-            />
-          ) : null}
         </div>
       </div>
     </section>
@@ -579,13 +421,11 @@ function UserPanel({
   isActive,
   isRecording,
   stage,
-  prepCountdown,
 }: {
   stream: MediaStream | null
   isActive: boolean
   isRecording: boolean
   stage: SessionStage
-  prepCountdown: number
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -601,9 +441,7 @@ function UserPanel({
       ? "You / Recording"
       : stage === "prompt"
         ? "You / Listening"
-        : stage === "uploading"
-          ? "You / Saving"
-          : "You"
+        : "You"
 
   return (
     <section className="relative h-full min-h-[420px] overflow-hidden rounded-[32px] border border-white/10 bg-[#0c0d0e] text-white shadow-[0_40px_140px_-60px_rgba(0,0,0,0.82)]">
@@ -647,19 +485,6 @@ function UserPanel({
         />
         <span>{candidateLabel}</span>
       </div>
-
-      {stage === "prep" && prepCountdown > 0 ? (
-        <div className="absolute inset-0 grid place-items-center bg-black/42 backdrop-blur-[2px]">
-          <div className="text-center text-white">
-            <p className="font-mono text-[4.5rem] font-semibold leading-none text-[#eef2de] tabular-nums sm:text-[6rem]">
-              {prepCountdown}
-            </p>
-            <p className="mt-4 text-sm tracking-[0.18em] text-white/62 uppercase">
-              Answer opens in a moment
-            </p>
-          </div>
-        </div>
-      ) : null}
     </section>
   )
 }
@@ -703,9 +528,6 @@ export function SessionRunner({
   const [sessionError, setSessionError] = useState<string | null>(null)
   const [isPrimingMicrophone, setIsPrimingMicrophone] = useState(false)
   const [showConnecting, setShowConnecting] = useState(initialStage === "intro")
-  const [promptProgress, setPromptProgress] = useState(0)
-  const [promptDelivery, setPromptDelivery] = useState<PromptDelivery>("audio")
-  const [prepCountdown, setPrepCountdown] = useState(0)
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const promptRunIdRef = useRef(0)
@@ -727,28 +549,22 @@ export function SessionRunner({
       ? "speaking"
       : stage === "recording"
         ? "listening"
-        : stage === "uploading" ||
-            stage === "finishing" ||
-            stage === "transition"
+        : stage === "uploading" || stage === "finishing"
           ? "thinking"
           : "idle"
 
   const statusText =
     stage === "prompt"
-      ? "Prompt playing"
-      : stage === "prep"
-        ? "Answer window opening"
-        : stage === "recording"
+      ? "Speaking"
+      : stage === "recording"
+        ? "Listening"
+        : stage === "uploading"
           ? "Listening"
-          : stage === "uploading"
-            ? "Saving response"
-            : stage === "transition"
-              ? "Preparing next prompt"
-              : stage === "finishing"
-                ? "Finalizing session"
-                : stage === "error"
-                  ? "Needs attention"
-                  : "Ready"
+          : stage === "finishing"
+            ? "Listening"
+            : stage === "error"
+              ? "Needs attention"
+              : "Ready"
 
   const cancelPromptPlayback = useCallback(() => {
     promptRunIdRef.current += 1
@@ -765,9 +581,6 @@ export function SessionRunner({
   const resetQuestionTransientState = useCallback(() => {
     cancelPromptPlayback()
     recorder.reset()
-    setPromptProgress(0)
-    setPromptDelivery("audio")
-    setPrepCountdown(0)
     setSessionError(null)
     recordingStartedRef.current = false
     captureAttemptRef.current = null
@@ -819,16 +632,12 @@ export function SessionRunner({
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel()
       }
-      setPromptProgress(100)
-      setPrepCountdown(PREP_COUNTDOWN_SECONDS)
-      setStage("prep")
+      setStage("recording")
     }
 
     const deliverAsText = () => {
       if (!isCurrentRun()) return
       fallbackStarted = true
-      setPromptDelivery("text")
-      setPromptProgress(0)
       completionTimer = setTimeout(finishPrompt, estimatedFallbackMs)
     }
 
@@ -850,16 +659,10 @@ export function SessionRunner({
         return
       }
 
-      setPromptDelivery("voice")
-      setPromptProgress(15)
-
       const utterance = new SpeechSynthesisUtterance(currentQuestion.body)
       utterance.rate = 0.92
       utterance.pitch = 0.88
       utterance.volume = 1
-      utterance.onstart = () => {
-        if (isCurrentRun()) setPromptProgress(35)
-      }
       utterance.onend = finishPrompt
       utterance.onerror = finishPrompt
 
@@ -879,18 +682,12 @@ export function SessionRunner({
       }
     }
 
-    const updateProgress = () => {
-      if (!isCurrentRun() || !audio.duration) return
-      setPromptProgress((audio.currentTime / audio.duration) * 100)
-    }
-
     const handlePlaying = () => {
       if (!isCurrentRun()) return
       if (loadTimer) {
         clearTimeout(loadTimer)
         loadTimer = null
       }
-      setPromptDelivery("audio")
     }
 
     const handleEnded = () => finishPrompt()
@@ -900,7 +697,6 @@ export function SessionRunner({
       if (!isCurrentRun() || playRequested || fallbackStarted) return
       playRequested = true
       try {
-        setPromptDelivery("audio")
         await audio.play()
       } catch {
         deliverWithSystemVoice()
@@ -912,7 +708,6 @@ export function SessionRunner({
     audio.src = currentQuestion.audio_url
     audio.load()
 
-    audio.addEventListener("timeupdate", updateProgress)
     audio.addEventListener("playing", handlePlaying)
     audio.addEventListener("ended", handleEnded)
     audio.addEventListener("error", handleError)
@@ -935,7 +730,6 @@ export function SessionRunner({
       clearTimers()
       audio.pause()
       audio.currentTime = 0
-      audio.removeEventListener("timeupdate", updateProgress)
       audio.removeEventListener("playing", handlePlaying)
       audio.removeEventListener("ended", handleEnded)
       audio.removeEventListener("error", handleError)
@@ -947,21 +741,6 @@ export function SessionRunner({
       }
     }
   }, [currentQuestion, stage])
-
-  useEffect(() => {
-    if (stage !== "prep") return
-    const interval = setInterval(() => {
-      setPrepCountdown((current) => {
-        if (current <= 1) {
-          clearInterval(interval)
-          setStage("recording")
-          return 0
-        }
-        return current - 1
-      })
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [stage])
 
   useEffect(() => {
     if (stage !== "recording" || recordingStartedRef.current) return
@@ -985,23 +764,15 @@ export function SessionRunner({
 
   const advanceToNextStep = useCallback(() => {
     const nextIndex = currentIndex + 1
-    setStage(nextIndex < totalQuestions ? "transition" : "finishing")
-  }, [currentIndex, totalQuestions])
+    if (nextIndex < totalQuestions) {
+      setCurrentIndex(nextIndex)
+      resetQuestionTransientState()
+      setStage("prompt")
+      return
+    }
 
-  useEffect(() => {
-    if (stage !== "transition") return
-    const timer = setTimeout(() => {
-      const nextIndex = currentIndex + 1
-      if (nextIndex < totalQuestions) {
-        setCurrentIndex(nextIndex)
-        resetQuestionTransientState()
-        setStage("prompt")
-      } else {
-        setStage("finishing")
-      }
-    }, TRANSITION_DELAY_MS)
-    return () => clearTimeout(timer)
-  }, [currentIndex, resetQuestionTransientState, stage, totalQuestions])
+    setStage("finishing")
+  }, [currentIndex, resetQuestionTransientState, totalQuestions])
 
   const captureCurrentAnswer = useCallback(() => {
     if (!currentQuestion || !recorder.audioBlob) return
@@ -1044,7 +815,7 @@ export function SessionRunner({
         if (!uploadResult.ok) {
           setSessionError(
             uploadResult.error ||
-              "One answer could not be uploaded. The session cannot be submitted."
+              "One answer could not be saved. The session cannot be submitted."
           )
           setStage("error")
           completeTriggeredRef.current = false
@@ -1053,7 +824,7 @@ export function SessionRunner({
 
         const updated = await completeSession(session.id)
         setSession(updated)
-        toast.success("Interview complete. Analysis has started.")
+        toast.success("Interview complete. Feedback is being prepared.")
         setStage("processing")
       } catch (error) {
         setSessionError(toApiError(error, "Failed to complete session").detail)
@@ -1061,14 +832,7 @@ export function SessionRunner({
         completeTriggeredRef.current = false
       }
     })()
-  }, [
-    camera,
-    cancelPromptPlayback,
-    recorder,
-    session.id,
-    stage,
-    waitForIdle,
-  ])
+  }, [camera, cancelPromptPlayback, recorder, session.id, stage, waitForIdle])
 
   async function handleBeginSession() {
     if (!currentQuestion) return
@@ -1154,29 +918,15 @@ export function SessionRunner({
             isActive={camera.isActive}
             isRecording={isRecording}
             stage={stage}
-            prepCountdown={prepCountdown}
           />
 
           <InterviewerTile
             status={interviewerStatus}
             statusText={statusText}
-            promptProgress={promptProgress}
-            hasAudio={!!currentQuestion.audio_url}
-            promptDelivery={promptDelivery}
-            stage={stage}
+            remainingSeconds={remainingRecordingSeconds}
           />
 
-          <QuestionOverlay
-            currentIndex={currentIndex}
-            totalQuestions={totalQuestions}
-            questionBody={currentQuestion.body}
-            stage={stage}
-            prepCountdown={prepCountdown}
-            remainingSeconds={remainingRecordingSeconds}
-            promptProgress={promptProgress}
-            hasAudio={!!currentQuestion.audio_url}
-            promptDelivery={promptDelivery}
-          />
+          <QuestionOverlay questionBody={currentQuestion.body} stage={stage} />
 
           {stage === "error" && sessionError ? (
             <div className="absolute top-4 left-1/2 z-30 w-[min(92vw,32rem)] -translate-x-1/2 sm:top-6">

@@ -6,9 +6,6 @@ import { toApiError } from "@/lib/api/errors"
 import type { SessionAnswer } from "@/lib/types"
 import { uploadAnswerAudio } from "@/hooks/use-upload-answer"
 
-const MAX_UPLOAD_ATTEMPTS = 3
-const RETRY_DELAY_MS = 1200
-
 export type AnswerUploadQueueStatus =
   | "queued"
   | "uploading"
@@ -35,10 +32,6 @@ interface UploadQueueResult {
 
 interface UseAnswerUploadQueueOptions {
   onAnswerUploaded?: (answer: SessionAnswer) => void
-}
-
-function wait(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 function toQueueItem(job: AnswerUploadJob): AnswerUploadQueueItem {
@@ -73,7 +66,7 @@ export function useAnswerUploadQueue({
     if (failed) {
       return {
         ok: false,
-        error: failed.error || "One answer could not be uploaded.",
+        error: failed.error || "One answer could not be saved.",
       }
     }
     return { ok: true }
@@ -131,17 +124,12 @@ export function useAnswerUploadQueue({
           })
           onAnswerUploadedRef.current?.(answer)
         } catch (error) {
-          const detail = toApiError(error, "Upload failed").detail
-          if (attempts < MAX_UPLOAD_ATTEMPTS) {
-            updateJob(job.id, { error: detail, status: "queued" })
-            await wait(RETRY_DELAY_MS * attempts)
-          } else {
-            updateJob(job.id, {
-              audioBlob: null,
-              error: detail,
-              status: "failed",
-            })
-          }
+          const detail = toApiError(error, "Answer could not be saved").detail
+          updateJob(job.id, {
+            audioBlob: null,
+            error: detail,
+            status: "failed",
+          })
         }
       }
     } finally {
