@@ -266,62 +266,48 @@ function ProcessingOverlay({ sessionId }: { sessionId: string }) {
   }, [router, session, sessionId])
 
   const failed = session?.status === "failed"
-  const totalAnswers = session?.answers?.length || 0
-  const uploadedAnswers =
-    session?.answers?.filter((answer) => answer.status !== "pending_upload")
-      .length || 0
-  const analyzedAnswers =
-    session?.answers?.filter((answer) => answer.status === "analyzed").length ||
-    0
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-[#ece8df] px-5 text-[#15130f]">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-[#15130f] px-5 text-white">
       <div
-        className="absolute inset-x-0 top-0 h-[36vh] bg-cover bg-center opacity-22"
+        className="absolute inset-0 bg-cover bg-center opacity-18"
         style={{ backgroundImage: `url(${SESSION_ROOM_IMAGE_URL})` }}
       />
-      <div className="absolute inset-0 bg-[#ece8df]/92" />
-      <div className="relative mx-auto w-full max-w-xl space-y-8 pt-24">
-        <div className="relative flex items-center gap-5">
-          <div className="grid h-16 w-16 place-items-center rounded-md border border-black/10 bg-[#f4f1ea]">
-            {failed ? (
-              <ShieldAlert className="h-8 w-8 text-[#ff4a5c]" />
-            ) : (
-              <Loader2 className="h-8 w-8 animate-spin text-[#7f8860]" />
-            )}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(154,164,120,0.28),_transparent_38%),linear-gradient(180deg,rgba(21,19,15,0.74),#15130f)]" />
+      <div className="relative flex min-h-full items-center justify-center">
+        <div className="w-full max-w-lg space-y-7 rounded-[32px] border border-white/12 bg-white/[0.06] p-7 shadow-[0_32px_120px_-50px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-8">
+          <div className="flex items-center gap-5">
+            <div className="grid h-16 w-16 place-items-center rounded-2xl border border-white/12 bg-white/[0.07]">
+              {failed ? (
+                <ShieldAlert className="h-8 w-8 text-[#ff4a5c]" />
+              ) : (
+                <Loader2 className="h-8 w-8 animate-spin text-[#dbe2c2]" />
+              )}
+            </div>
+            <div>
+              <p className="text-sm text-white/48">
+                {failed ? "Feedback delayed" : "Interview complete"}
+              </p>
+              <h1 className="text-3xl font-semibold text-white">
+                {failed
+                  ? "Feedback could not finish"
+                  : "Preparing your feedback"}
+              </h1>
+            </div>
           </div>
-          <div>
-            <p className="text-sm text-foreground/48">
-              {failed ? "Feedback delayed" : "Interview complete"}
-            </p>
-            <h1 className="text-3xl font-semibold text-foreground">
-              {failed ? "Feedback could not finish" : "Preparing your feedback"}
-            </h1>
-          </div>
+
+          <p className="max-w-md text-sm leading-6 text-white/62">
+            {failed
+              ? "Your responses were submitted, but feedback is not ready yet."
+              : "Your responses are being reviewed. Keep this tab open while feedback is prepared."}
+          </p>
+
+          {!failed ? (
+            <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+              <div className="h-full w-1/2 animate-pulse rounded-full bg-[#dbe2c2]" />
+            </div>
+          ) : null}
         </div>
-
-        <p className="relative max-w-lg text-sm leading-6 text-foreground/62">
-          {failed
-            ? "Your responses were submitted, but feedback is not ready yet."
-            : "Your responses are being reviewed. Keep this tab open while feedback is prepared."}
-        </p>
-
-        {!failed ? (
-          <div className="relative grid gap-3 border border-black/10 bg-white/72 p-4 backdrop-blur-sm">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-foreground/58">Responses received</span>
-              <span className="font-mono tabular-nums">
-                {uploadedAnswers}/{totalAnswers || uploadedAnswers}
-              </span>
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-foreground/58">Feedback progress</span>
-              <span className="font-mono tabular-nums">
-                {analyzedAnswers}/{totalAnswers || analyzedAnswers}
-              </span>
-            </div>
-          </div>
-        ) : null}
       </div>
     </div>
   )
@@ -500,6 +486,7 @@ export function SessionRunner({
 }) {
   const recorder = useAudioRecorder()
   const camera = useSelfCamera()
+  const router = useAppNavigation()
 
   const [session, setSession] = useState<Session>(initialSession)
   const [currentIndex, setCurrentIndex] = useState(() =>
@@ -824,6 +811,12 @@ export function SessionRunner({
 
         const updated = await completeSession(session.id)
         setSession(updated)
+        if (updated.status === "completed") {
+          toast.success("Interview complete. Your feedback is ready.")
+          router.replace(ROUTES.STUDENT_RESULTS(session.id))
+          return
+        }
+
         toast.success("Interview complete. Feedback is being prepared.")
         setStage("processing")
       } catch (error) {
@@ -832,7 +825,15 @@ export function SessionRunner({
         completeTriggeredRef.current = false
       }
     })()
-  }, [camera, cancelPromptPlayback, recorder, session.id, stage, waitForIdle])
+  }, [
+    camera,
+    cancelPromptPlayback,
+    recorder,
+    router,
+    session.id,
+    stage,
+    waitForIdle,
+  ])
 
   async function handleBeginSession() {
     if (!currentQuestion) return

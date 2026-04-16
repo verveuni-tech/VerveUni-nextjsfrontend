@@ -7,7 +7,13 @@ import { PageHeader } from "@/components/layout/page-header"
 import { GradeBadge } from "@/components/shared/grade-badge"
 import { ResultsTabs } from "@/components/student/results-tabs"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { requireUser } from "@/lib/auth/server"
 import { getSession } from "@/lib/server/app-data"
@@ -15,9 +21,15 @@ import { ROUTES } from "@/lib/constants"
 import type { ScoreDimension, SessionAnswer } from "@/lib/types"
 
 function getWeakestAnswer(answers: SessionAnswer[]) {
-  return [...answers]
-    .filter((answer) => answer.analysis)
-    .sort((left, right) => (left.analysis?.overall_score || 0) - (right.analysis?.overall_score || 0))[0] || null
+  return (
+    [...answers]
+      .filter((answer) => answer.analysis)
+      .sort(
+        (left, right) =>
+          (left.analysis?.overall_score || 0) -
+          (right.analysis?.overall_score || 0)
+      )[0] || null
+  )
 }
 
 function getEvidence(answer: SessionAnswer | null) {
@@ -34,7 +46,9 @@ function getEvidence(answer: SessionAnswer | null) {
         return []
       }
 
-      return Array.isArray(dimension.evidence) ? dimension.evidence : [dimension.evidence]
+      return Array.isArray(dimension.evidence)
+        ? dimension.evidence
+        : [dimension.evidence]
     })
     .filter((item): item is string => Boolean(item))
     .slice(0, 3)
@@ -44,7 +58,9 @@ function getEvidence(answer: SessionAnswer | null) {
   }
 
   if (answer.transcript) {
-    return [`Transcript sample: "${answer.transcript.slice(0, 140)}${answer.transcript.length > 140 ? "..." : ""}"`]
+    return [
+      `Transcript sample: "${answer.transcript.slice(0, 140)}${answer.transcript.length > 140 ? "..." : ""}"`,
+    ]
   }
 
   return ["No speech was detected for this answer."]
@@ -59,7 +75,10 @@ export default async function ResultsPage({
   const user = await requireUser()
   const session = await getSession(user, sessionId)
 
-  if (session.status === "ready_for_analysis" || session.status === "processing") {
+  if (
+    session.status === "ready_for_analysis" ||
+    session.status === "processing"
+  ) {
     redirect(ROUTES.STUDENT_SESSION(sessionId))
   }
 
@@ -67,17 +86,35 @@ export default async function ResultsPage({
   const analyzedAnswers = answers.filter((answer) => answer.analysis)
   const avgScore =
     analyzedAnswers.length > 0
-      ? analyzedAnswers.reduce((sum, answer) => sum + (answer.analysis?.overall_score || 0), 0) /
-        analyzedAnswers.length
+      ? analyzedAnswers.reduce(
+          (sum, answer) => sum + (answer.analysis?.overall_score || 0),
+          0
+        ) / analyzedAnswers.length
       : 0
   const overallGrade =
-    avgScore >= 85 ? "A" : avgScore >= 70 ? "B" : avgScore >= 55 ? "C" : avgScore >= 40 ? "D" : "F"
+    avgScore >= 85
+      ? "A"
+      : avgScore >= 70
+        ? "B"
+        : avgScore >= 55
+          ? "C"
+          : avgScore >= 40
+            ? "D"
+            : "F"
 
   const strengths = Array.from(
-    new Set(analyzedAnswers.flatMap((answer) => answer.analysis?.feedback.strengths || []))
+    new Set(
+      analyzedAnswers.flatMap(
+        (answer) => answer.analysis?.feedback.strengths || []
+      )
+    )
   ).slice(0, 5)
   const slowdowns = Array.from(
-    new Set(analyzedAnswers.flatMap((answer) => answer.analysis?.feedback.slowdowns || []))
+    new Set(
+      analyzedAnswers.flatMap(
+        (answer) => answer.analysis?.feedback.slowdowns || []
+      )
+    )
   ).slice(0, 5)
   const nextFocus = analyzedAnswers
     .map((answer) => answer.analysis?.feedback.next_focus?.trim())
@@ -85,9 +122,12 @@ export default async function ResultsPage({
   const uniqueNextFocus = Array.from(new Set(nextFocus))
     .filter((value) => value.length > 0)
     .slice(0, 3)
-  const primaryNextFocus = uniqueNextFocus[0] || "Practice a tighter opening with clearer structure."
+  const primaryNextFocus =
+    uniqueNextFocus[0] || "Practice a tighter opening with clearer structure."
   const weakestAnswer = getWeakestAnswer(answers)
-  const weakestIndex = weakestAnswer ? answers.findIndex((answer) => answer.id === weakestAnswer.id) : 0
+  const weakestIndex = weakestAnswer
+    ? answers.findIndex((answer) => answer.id === weakestAnswer.id)
+    : 0
   const weakestEvidence = getEvidence(weakestAnswer)
   const redoHref = `${ROUTES.STUDENT_SESSION_NEW}?batch=${encodeURIComponent(session.batch_id)}&questionSet=${encodeURIComponent(session.question_set_id)}&autostart=1`
 
@@ -120,7 +160,7 @@ export default async function ResultsPage({
           <Separator orientation="vertical" className="hidden h-16 sm:block" />
           <div className="space-y-2 text-center sm:text-left">
             <p className="text-lg font-medium">
-              {analyzedAnswers.length}/{answers.length} questions analyzed
+              {analyzedAnswers.length}/{answers.length} questions reviewed
             </p>
             <p className="text-sm text-muted-foreground">
               {new Date(session.started_at).toLocaleDateString("en-US", {
@@ -138,12 +178,17 @@ export default async function ResultsPage({
         <Card className="border-emerald-200 bg-emerald-50/60">
           <CardHeader>
             <CardTitle>Practice Next</CardTitle>
-            <CardDescription>One concrete move to take into the next attempt.</CardDescription>
+            <CardDescription>
+              One concrete move to take into the next attempt.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-xl font-semibold text-emerald-950">{primaryNextFocus}</p>
+            <p className="text-xl font-semibold text-emerald-950">
+              {primaryNextFocus}
+            </p>
             <p className="text-sm text-emerald-900/80">
-              The fastest improvement usually comes from repeating the same set while this feedback is still fresh.
+              The fastest improvement usually comes from repeating the same set
+              while this feedback is still fresh.
             </p>
             <div className="flex flex-wrap gap-2">
               <Button asChild>
@@ -163,7 +208,9 @@ export default async function ResultsPage({
           <CardHeader>
             <CardTitle>Biggest Coaching Opportunity</CardTitle>
             <CardDescription>
-              {weakestAnswer ? `Q${weakestIndex + 1}: ${weakestAnswer.question?.body || weakestAnswer.question_body || "Question"}` : "Keep building consistency."}
+              {weakestAnswer
+                ? `Q${weakestIndex + 1}: ${weakestAnswer.question?.body || weakestAnswer.question_body || "Question"}`
+                : "Keep building consistency."}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -172,7 +219,10 @@ export default async function ResultsPage({
             </p>
             <ul className="space-y-2">
               {weakestEvidence.map((item, index) => (
-                <li key={`${item}-${index}`} className="text-sm text-muted-foreground">
+                <li
+                  key={`${item}-${index}`}
+                  className="text-sm text-muted-foreground"
+                >
                   - {item}
                 </li>
               ))}
@@ -181,15 +231,22 @@ export default async function ResultsPage({
         </Card>
       </div>
 
-      <FeedbackCards strengths={strengths} slowdowns={slowdowns} nextFocus={uniqueNextFocus} />
+      <FeedbackCards
+        strengths={strengths}
+        slowdowns={slowdowns}
+        nextFocus={uniqueNextFocus}
+      />
 
       <Card id="answer-breakdown">
         <CardHeader>
           <CardTitle>Answer Breakdown</CardTitle>
-          <CardDescription>Detailed results for each question</CardDescription>
+          <CardDescription>Your feedback for each answer</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResultsTabs answers={answers} defaultIndex={Math.max(0, weakestIndex)} />
+          <ResultsTabs
+            answers={answers}
+            defaultIndex={Math.max(0, weakestIndex)}
+          />
         </CardContent>
       </Card>
     </div>

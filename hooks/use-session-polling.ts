@@ -16,6 +16,7 @@ export function useSessionPolling(
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const attemptRef = useRef(0)
   const requestInFlightRef = useRef(false)
+  const isPollingRef = useRef(false)
 
   const clearScheduledPoll = useCallback(() => {
     if (timeoutRef.current) {
@@ -34,13 +35,14 @@ export function useSessionPolling(
   }, [interval])
 
   const stopPolling = useCallback(() => {
+    isPollingRef.current = false
     setIsPolling(false)
     clearScheduledPoll()
   }, [clearScheduledPoll])
 
-  const fetchSession = useCallback(async () => {
+  const fetchSession = useCallback(async (): Promise<Session | null> => {
     if (requestInFlightRef.current) {
-      return
+      return null
     }
 
     requestInFlightRef.current = true
@@ -51,8 +53,10 @@ export function useSessionPolling(
       if (TERMINAL_STATUSES.includes(data.status)) {
         stopPolling()
       }
+      return data
     } catch {
       attemptRef.current += 1
+      return null
     } finally {
       requestInFlightRef.current = false
     }
@@ -61,21 +65,30 @@ export function useSessionPolling(
   const scheduleNextPoll = useCallback(() => {
     clearScheduledPoll()
     timeoutRef.current = setTimeout(async () => {
-      await fetchSession()
-      if (isPolling) {
+      const data = await fetchSession()
+      if (
+        isPollingRef.current &&
+        (!data || !TERMINAL_STATUSES.includes(data.status))
+      ) {
         scheduleNextPoll()
       }
     }, getNextDelay())
-  }, [clearScheduledPoll, fetchSession, getNextDelay, isPolling])
+  }, [clearScheduledPoll, fetchSession, getNextDelay])
 
   const startPolling = useCallback(() => {
-    if (timeoutRef.current) {
+    if (isPollingRef.current || timeoutRef.current) {
       return
     }
 
+    isPollingRef.current = true
     setIsPolling(true)
-    void fetchSession().finally(() => {
-      scheduleNextPoll()
+    void fetchSession().then((data) => {
+      if (
+        isPollingRef.current &&
+        (!data || !TERMINAL_STATUSES.includes(data.status))
+      ) {
+        scheduleNextPoll()
+      }
     })
   }, [fetchSession, scheduleNextPoll])
 
@@ -100,5 +113,11 @@ export function useSessionPolling(
     }
   }, [clearScheduledPoll, isPolling, scheduleNextPoll])
 
-  return { session, isPolling, startPolling, stopPolling, refetch: fetchSession }
+  return {
+    session,
+    isPolling,
+    startPolling,
+    stopPolling,
+    refetch: fetchSession,
+  }
 }

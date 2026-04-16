@@ -45,6 +45,7 @@ export function SessionStarter({
 }) {
   const router = useAppNavigation()
   const autostartAttemptedRef = useRef(false)
+  const startingRequestRef = useRef(false)
   const [selectedBatch, setSelectedBatch] = useState<string | null>(() =>
     preferredBatch && batches.some((batch) => batch.id === preferredBatch)
       ? preferredBatch
@@ -71,21 +72,27 @@ export function SessionStarter({
 
   const startSession = useCallback(
     async (questionSetId: string, batchId = selectedBatch) => {
-      if (!batchId) {
+      if (!batchId || startingRequestRef.current) {
         return
       }
 
+      startingRequestRef.current = true
       setStartingId(questionSetId)
+      let didNavigate = false
       try {
         const session = await createSession({
           batch_id: batchId,
           question_set_id: questionSetId,
         })
         router.push(ROUTES.STUDENT_SESSION(session.id))
+        didNavigate = true
       } catch (error) {
         toast.error(toApiError(error, "Failed to start session").detail)
       } finally {
-        setStartingId(null)
+        if (!didNavigate) {
+          startingRequestRef.current = false
+          setStartingId(null)
+        }
       }
     },
     [router, selectedBatch]
@@ -251,6 +258,7 @@ export function SessionStarter({
                 questionSet.question_count ||
                 "?"
               const starting = startingId === questionSet.id
+              const isStartingAnySession = startingId !== null
               const recommended = preferredQuestionSet === questionSet.id
 
               return (
@@ -284,7 +292,7 @@ export function SessionStarter({
                   </div>
                   <button
                     onClick={() => startSession(questionSet.id)}
-                    disabled={starting}
+                    disabled={isStartingAnySession}
                     className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-foreground px-4 text-sm font-medium text-background transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {starting ? (
