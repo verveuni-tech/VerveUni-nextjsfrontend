@@ -1,5 +1,5 @@
 const DEFAULT_API_BASE_URL =
-  "https://educators-surplus-removed-promoting.trycloudflare.com"
+  "https://api.verveuni.com"
 
 function normalizeBaseUrl(value: string) {
   return value.replace(/\/+$/, "")

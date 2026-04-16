@@ -1,6 +1,6 @@
 const backendApiUrl = (
   process.env.NEXT_PUBLIC_API_URL ||
-  "https://educators-surplus-removed-promoting.trycloudflare.com"
+  "https://api.verveuni.com"
 ).replace(/\/+$/, "")
 
 /** @type {import('next').NextConfig} */
