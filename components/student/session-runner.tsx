@@ -23,7 +23,7 @@ import { completeSession } from "@/lib/api/sessions"
 import { ROUTES, SESSION_ROOM_IMAGE_URL } from "@/lib/constants"
 import type { Question, Session, SessionAnswer } from "@/lib/types"
 
-const ANSWER_LIMIT_SECONDS = 60
+const ANSWER_LIMIT_SECONDS = 40
 const CONNECTING_DURATION_MS = 1400
 const PROMPT_AUDIO_LOAD_TIMEOUT_MS = 5500
 const TEXT_ONLY_PROMPT_MIN_MS = 3200
