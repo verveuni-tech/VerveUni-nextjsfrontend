@@ -12,10 +12,14 @@ import type {
   BatchMembership,
   BatchRole,
   OrganizationSummary,
+  CoachingDataQuality,
+  CoachingPrimaryBlocker,
+  CoachingSummary,
   ProgressSummary,
   Question,
   QuestionSet,
   Session,
+  SessionAnalysis,
   SessionAnswer,
   User,
   UserRole,
@@ -71,6 +75,139 @@ function average(values: number[]) {
   return values.length
     ? values.reduce((sum, value) => sum + value, 0) / values.length
     : 0
+}
+
+const COACHING_DATA_QUALITIES = new Set<CoachingDataQuality>([
+  "insufficient",
+  "usable",
+  "strong",
+])
+
+const COACHING_PRIMARY_BLOCKERS = new Set<CoachingPrimaryBlocker>([
+  "no_response",
+  "too_short",
+  "long_pauses",
+  "missing_structure",
+  "weak_examples",
+  "unclear_content",
+  "good_progress",
+])
+
+function toRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : {}
+}
+
+function stringValue(value: unknown, fallback = "") {
+  return typeof value === "string" ? value : fallback
+}
+
+function stringArray(value: unknown) {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === "string")
+  }
+
+  return typeof value === "string" && value.trim() ? [value] : []
+}
+
+function mapCoachingSummary(value: unknown): CoachingSummary | null {
+  const data = toRecord(value)
+  if (Object.keys(data).length === 0) {
+    return null
+  }
+
+  const nextPracticeGoal = toRecord(data.next_practice_goal)
+  const lastSessionObservation = toRecord(data.last_session_observation)
+  const skillToBuild = toRecord(data.skill_to_build)
+  const practiceDrill = toRecord(data.practice_drill)
+  const progressSignal = toRecord(data.progress_signal)
+
+  const dataQuality = stringValue(data.data_quality)
+  const primaryBlocker = stringValue(data.primary_blocker)
+  const title = stringValue(nextPracticeGoal.title).trim()
+  const explanation = stringValue(nextPracticeGoal.explanation).trim()
+  const successTarget = stringValue(nextPracticeGoal.success_target).trim()
+  const observationSummary = stringValue(lastSessionObservation.summary).trim()
+  const instruction = stringValue(practiceDrill.instruction).trim()
+
+  if (
+    !title &&
+    !explanation &&
+    !successTarget &&
+    !observationSummary &&
+    !instruction
+  ) {
+    return null
+  }
+
+  return {
+    data_quality: COACHING_DATA_QUALITIES.has(
+      dataQuality as CoachingDataQuality
+    )
+      ? (dataQuality as CoachingDataQuality)
+      : "usable",
+    primary_blocker: COACHING_PRIMARY_BLOCKERS.has(
+      primaryBlocker as CoachingPrimaryBlocker
+    )
+      ? (primaryBlocker as CoachingPrimaryBlocker)
+      : "good_progress",
+    next_practice_goal: {
+      title: title || "Practice one focused improvement",
+      explanation:
+        explanation ||
+        "Use the latest feedback as one small target for your next attempt.",
+      success_target:
+        successTarget || "Repeat the session with this target in mind.",
+    },
+    last_session_observation: {
+      summary:
+        observationSummary ||
+        "Your latest session gives us a starting point for the next practice attempt.",
+      evidence: stringArray(lastSessionObservation.evidence),
+    },
+    skill_to_build: {
+      name: stringValue(skillToBuild.name, "Answer momentum"),
+      why_it_matters:
+        stringValue(skillToBuild.why_it_matters) ||
+        "Building one reliable speaking habit at a time makes interview practice easier to repeat.",
+    },
+    practice_drill: {
+      instruction:
+        instruction ||
+        "Answer directly, add one example, then close with the result.",
+      example_pattern:
+        stringValue(practiceDrill.example_pattern) ||
+        "My answer is... For example... The result was...",
+    },
+    progress_signal: {
+      label: stringValue(progressSignal.label, "Next attempt ready"),
+      message:
+        stringValue(progressSignal.message) ||
+        "Your next session will make this progress signal more useful.",
+    },
+  }
+}
+
+function mapSessionAnalysis(id: string, data: FirestoreDoc): SessionAnalysis {
+  const progressSnapshot = toRecord(data.progress_snapshot)
+
+  return {
+    id,
+    session_id: String(data.session_id || id),
+    final_score: Number(data.final_score ?? 0),
+    strengths: stringArray(data.strengths),
+    slowdowns: stringArray(data.slowdowns),
+    next_focus: stringArray(data.next_focus),
+    summary_text: (data.summary_text as string | null) ?? null,
+    progress_snapshot:
+      Object.keys(progressSnapshot).length > 0 ? progressSnapshot : null,
+    coaching_summary: mapCoachingSummary(data.coaching_summary),
+    overall_delivery_level:
+      (data.overall_delivery_level as string | null) ?? null,
+    overall_content_level:
+      (data.overall_content_level as string | null) ?? null,
+  }
 }
 
 async function setUserRoleClaim(userId: string, role: UserRole) {
@@ -156,6 +293,7 @@ function mapAnswer(id: string, data: FirestoreDoc): SessionAnswer {
     question_id: String(data.question_id),
     question_body: (data.question_body as string | undefined) ?? undefined,
     audio_path: (data.audio_path as string | null) ?? null,
+    duration_seconds: (data.duration_seconds as number | null) ?? null,
     transcript: transcriptClean || transcriptRaw,
     transcript_raw: transcriptRaw,
     transcript_clean: transcriptClean,
@@ -170,7 +308,8 @@ function mapAnswer(id: string, data: FirestoreDoc): SessionAnswer {
 function mapSession(
   id: string,
   data: FirestoreDoc,
-  answers: SessionAnswer[] = []
+  answers: SessionAnswer[] = [],
+  analysis: SessionAnalysis | null = null
 ): Session {
   return {
     id,
@@ -194,6 +333,7 @@ function mapSession(
         } as QuestionSet)
       : undefined,
     answers,
+    analysis,
   }
 }
 
@@ -1271,18 +1411,24 @@ export async function getSession(user: User, sessionId: string) {
     await requireBatchAccess(user, batchId)
   }
 
-  const answersSnapshot = await firestore
-    .collection("sessionAnswers")
-    .where("session_id", "==", sessionId)
-    .get()
+  const [answersSnapshot, analysisSnapshot] = await Promise.all([
+    firestore
+      .collection("sessionAnswers")
+      .where("session_id", "==", sessionId)
+      .get(),
+    firestore.collection("sessionAnalyses").doc(sessionId).get(),
+  ])
   const answers = answersSnapshot.docs
     .map((doc: Doc) => mapAnswer(doc.id, doc.data() || {}))
     .sort(
       (left: SessionAnswer, right: SessionAnswer) =>
         Number(left.question?.order || 0) - Number(right.question?.order || 0)
     )
+  const analysis = analysisSnapshot.exists
+    ? mapSessionAnalysis(analysisSnapshot.id, analysisSnapshot.data() || {})
+    : null
 
-  return mapSession(sessionSnapshot.id, sessionData, answers)
+  return mapSession(sessionSnapshot.id, sessionData, answers, analysis)
 }
 
 export async function saveAnswer(
@@ -1408,18 +1554,28 @@ export async function getProgressSummary(
     )
   )
 
-  const analyses = analysisSnapshots
-    .filter((snap: Snap) => snap.exists)
-    .map((snap: Snap) => snap.data() || {})
-  const scores = analyses.map((analysis: DocumentData) =>
+  const analysisEntries = analysisSnapshots
+    .map((snap: Snap, index: number) =>
+      snap.exists
+        ? {
+            session: completed[index],
+            analysis: mapSessionAnalysis(snap.id, snap.data() || {}),
+          }
+        : null
+    )
+    .filter((entry): entry is { session: Session; analysis: SessionAnalysis } =>
+      Boolean(entry)
+    )
+  const analyses = analysisEntries.map((entry) => entry.analysis)
+  const scores = analyses.map((analysis: SessionAnalysis) =>
     Number(analysis.final_score ?? 0)
   )
   const latest = analyses[0] || null
   const avgScore = average(scores)
-  const deliveryLevels = analyses.map((analysis: DocumentData) =>
+  const deliveryLevels = analyses.map((analysis: SessionAnalysis) =>
     String(analysis.overall_delivery_level || "")
   )
-  const contentLevels = analyses.map((analysis: DocumentData) =>
+  const contentLevels = analyses.map((analysis: SessionAnalysis) =>
     String(analysis.overall_content_level || "")
   )
   const avgDelivery = average(deliveryLevels.map(levelToScore))
@@ -1438,25 +1594,24 @@ export async function getProgressSummary(
     metrics_summary: latest
       ? {
           avg_final_score: avgScore,
-          latest_strengths: (latest.strengths as string[]) || [],
-          latest_slowdowns: (latest.slowdowns as string[]) || [],
-          latest_next_focus: (latest.next_focus as string[]) || [],
+          latest_strengths: latest.strengths,
+          latest_slowdowns: latest.slowdowns,
+          latest_next_focus: latest.next_focus,
         }
       : null,
-    trend_data: analyses
-      .slice(0, 6)
-      .map((analysis: DocumentData, index: number) => ({
-        session_id: completed[index]?.id || "",
-        delivery_level: String(analysis.overall_delivery_level || ""),
-        content_level: String(analysis.overall_content_level || ""),
-        final_score: Number(analysis.final_score ?? 0),
-      })),
+    coaching_summary: latest?.coaching_summary ?? null,
+    trend_data: analysisEntries.slice(0, 6).map(({ analysis, session }) => ({
+      session_id: session.id,
+      delivery_level: String(analysis.overall_delivery_level || ""),
+      content_level: String(analysis.overall_content_level || ""),
+      final_score: Number(analysis.final_score ?? 0),
+    })),
     total_sessions: completed.length,
     avg_score: avgScore,
     avg_delivery: avgDelivery,
     avg_content: avgContent,
     current_grade: gradeFromScore(avgScore),
-    focus_area: latest?.next_focus?.[0] || null,
+    focus_area: latest?.next_focus[0] || null,
     recent_sessions: recentSessions,
   }
 }

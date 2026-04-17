@@ -2,8 +2,8 @@ import { BarChart3, Calendar, Target, TrendingUp } from "lucide-react"
 
 import { PageHeader } from "@/components/layout/page-header"
 import { EmptyState } from "@/components/shared/empty-state"
-import { GradeBadge } from "@/components/shared/grade-badge"
 import { StatCard } from "@/components/shared/stat-card"
+import { CoachingSummaryPanel } from "@/components/student/coaching-summary-panel"
 import {
   Card,
   CardContent,
@@ -46,106 +46,137 @@ export default async function ProgressPage() {
       : progress.trend_direction === "stable"
         ? "Stable"
         : "In progress"
+  const coaching = progress.coaching_summary ?? null
+  const hasReliableProgress = coaching
+    ? coaching.data_quality !== "insufficient"
+    : latestScore > 0
+  const latestSlowdowns = progress.metrics_summary?.latest_slowdowns || []
+  const latestStrengths = progress.metrics_summary?.latest_strengths || []
+  const latestFocus = progress.metrics_summary?.latest_next_focus || []
+  const fallbackEvidence = [
+    ...latestSlowdowns,
+    ...latestStrengths,
+    ...latestFocus,
+  ].slice(0, 4)
+  const fallbackProgressLabel = hasReliableProgress
+    ? trendLabel
+    : "Not enough yet"
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="My Progress"
-        description="Track your interview practice improvement"
+        title="Practice Progress"
+        description="Your next coaching step, not just a score."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <CoachingSummaryPanel
+        coaching={coaching}
+        fallback={{
+          title:
+            progress.focus_area ||
+            "Build one clearer answer in your next session",
+          explanation:
+            "Use the latest feedback as one practical target before looking at scores.",
+          successTarget:
+            "Complete one more session and apply this target to every answer.",
+          observation:
+            "Your latest completed session gives us a starting point for the next attempt.",
+          evidence: fallbackEvidence,
+          skillName: progress.focus_area
+            ? "Focused repetition"
+            : "Answer momentum",
+          skillWhy:
+            "Repeated interview pressure works best when each attempt has one clear behavior to improve.",
+          drillInstruction:
+            "Start with a direct answer, add one example, then finish with the result.",
+          drillPattern: "My answer is... For example... The result was...",
+          progressLabel: fallbackProgressLabel,
+          progressMessage:
+            "Complete another spoken attempt to make this direction more precise.",
+        }}
+      />
+
+      <div className="grid gap-4 md:grid-cols-3">
         <StatCard
-          title="Total Sessions"
+          title="Sessions completed"
           value={progress.total_sessions}
           icon={Calendar}
+          description="Every attempt builds interview reflexes."
         />
         <StatCard
-          title="Average Score"
-          value={`${Math.round(progress.avg_score)}%`}
+          title="Latest result"
+          value={
+            hasReliableProgress
+              ? `${Math.round(latestScore)}%`
+              : "Still forming"
+          }
           icon={TrendingUp}
+          description={
+            hasReliableProgress
+              ? "Use this as context, not the whole story."
+              : "Speak more in the next attempt for a fairer read."
+          }
         />
         <StatCard
-          title="Delivery Avg"
-          value={`${Math.round(progress.avg_delivery)}%`}
+          title="Recent direction"
+          value={hasReliableProgress ? trendLabel : "Not enough yet"}
           icon={BarChart3}
-        />
-        <StatCard
-          title="Content Avg"
-          value={`${Math.round(progress.avg_content)}%`}
-          icon={Target}
+          description={
+            hasReliableProgress
+              ? "Compared with your recent completed sessions."
+              : "We need one clearer spoken session first."
+          }
         />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Current Standing</CardTitle>
-          </CardHeader>
-          <CardContent className="flex items-center justify-center py-6">
-            <GradeBadge
-              grade={progress.current_grade}
-              score={progress.avg_score}
-              size="lg"
-            />
-          </CardContent>
-        </Card>
-
-        {progress.focus_area ? (
-          <Card>
-            <CardHeader>
-              <CardTitle>Focus Area</CardTitle>
-              <CardDescription>What to work on next</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg font-medium">{progress.focus_area}</p>
-            </CardContent>
-          </Card>
-        ) : null}
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle>Trajectory</CardTitle>
+            <CardTitle>
+              {hasReliableProgress ? "Recent comparison" : "Why no trend yet"}
+            </CardTitle>
             <CardDescription>
-              Direction matters more than one isolated score.
+              {hasReliableProgress
+                ? "A small signal from your latest result against your recent baseline."
+                : "We avoid showing overconfident progress when the answer data is too thin."}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-semibold">{trendLabel}</p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Based on your latest completed sessions.
-            </p>
+            {hasReliableProgress ? (
+              <>
+                <p className="text-2xl font-semibold">
+                  {latestDelta >= 0 ? "+" : ""}
+                  {latestDelta} pts
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Latest {Math.round(latestScore)}% against a baseline of{" "}
+                  {Math.round(baselineScore)}%.
+                </p>
+              </>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                Complete one session with enough spoken answers and this section
+                will start comparing your recent attempts.
+              </p>
+            )}
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader>
-            <CardTitle>Latest vs Previous 3</CardTitle>
+            <CardTitle>What this page is for</CardTitle>
             <CardDescription>
-              How your most recent result compares with your recent baseline.
+              Practice works best when the next attempt has one job.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-semibold">
-              {latestDelta >= 0 ? "+" : ""}
-              {latestDelta} pts
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Latest {Math.round(latestScore)}% against a baseline of{" "}
-              {Math.round(baselineScore)}%.
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Keep Working On</CardTitle>
-            <CardDescription>Your current coaching thread.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg font-medium">
-              {progress.focus_area || "Build consistency across answers."}
-            </p>
+            <div className="flex gap-3">
+              <Target className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">
+                Scores stay in the background here. The main goal is to tell you
+                what to change in the very next interview simulation.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

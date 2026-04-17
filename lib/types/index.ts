@@ -108,9 +108,15 @@ export interface Session {
   answers_analyzed?: number
   question_set?: QuestionSet
   answers?: SessionAnswer[]
+  analysis?: SessionAnalysis | null
 }
 
-export type AnswerStatus = "pending_upload" | "uploaded" | "processing" | "analyzed" | "failed"
+export type AnswerStatus =
+  | "pending_upload"
+  | "uploaded"
+  | "processing"
+  | "analyzed"
+  | "failed"
 
 export interface CloudinaryAsset {
   public_id: string
@@ -128,6 +134,7 @@ export interface SessionAnswer {
   question_id: string
   question_body?: string
   audio_path: string | null
+  duration_seconds?: number | null
   transcript: string | null
   transcript_raw?: string | null
   transcript_clean?: string | null
@@ -182,6 +189,57 @@ export interface SessionFeedback {
   grade: string
 }
 
+export type CoachingDataQuality = "insufficient" | "usable" | "strong"
+
+export type CoachingPrimaryBlocker =
+  | "no_response"
+  | "too_short"
+  | "long_pauses"
+  | "missing_structure"
+  | "weak_examples"
+  | "unclear_content"
+  | "good_progress"
+
+export interface CoachingSummary {
+  data_quality: CoachingDataQuality
+  primary_blocker: CoachingPrimaryBlocker
+  next_practice_goal: {
+    title: string
+    explanation: string
+    success_target: string
+  }
+  last_session_observation: {
+    summary: string
+    evidence: string[]
+  }
+  skill_to_build: {
+    name: string
+    why_it_matters: string
+  }
+  practice_drill: {
+    instruction: string
+    example_pattern: string
+  }
+  progress_signal: {
+    label: string
+    message: string
+  }
+}
+
+export interface SessionAnalysis {
+  id: string
+  session_id: string
+  final_score: number
+  strengths: string[]
+  slowdowns: string[]
+  next_focus: string[]
+  summary_text: string | null
+  progress_snapshot?: Record<string, unknown> | null
+  coaching_summary?: CoachingSummary | null
+  overall_delivery_level?: string | null
+  overall_content_level?: string | null
+}
+
 export interface ProgressSnapshot {
   id: string
   session_number: number
@@ -206,6 +264,7 @@ export interface ProgressSummary {
     latest_slowdowns: string[]
     latest_next_focus: string[]
   } | null
+  coaching_summary?: CoachingSummary | null
   trend_data: Array<{
     session_id: string
     delivery_level: string

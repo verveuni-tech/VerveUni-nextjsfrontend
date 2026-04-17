@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 import { FeedbackCards } from "@/components/feedback/feedback-cards"
 import { PageHeader } from "@/components/layout/page-header"
 import { GradeBadge } from "@/components/shared/grade-badge"
+import { CoachingSummaryPanel } from "@/components/student/coaching-summary-panel"
 import { ResultsTabs } from "@/components/student/results-tabs"
 import { Button } from "@/components/ui/button"
 import {
@@ -85,12 +86,13 @@ export default async function ResultsPage({
   const answers = session.answers || []
   const analyzedAnswers = answers.filter((answer) => answer.analysis)
   const avgScore =
-    analyzedAnswers.length > 0
+    session.analysis?.final_score ??
+    (analyzedAnswers.length > 0
       ? analyzedAnswers.reduce(
           (sum, answer) => sum + (answer.analysis?.overall_score || 0),
           0
         ) / analyzedAnswers.length
-      : 0
+      : 0)
   const overallGrade =
     avgScore >= 85
       ? "A"
@@ -102,23 +104,32 @@ export default async function ResultsPage({
             ? "D"
             : "F"
 
-  const strengths = Array.from(
-    new Set(
-      analyzedAnswers.flatMap(
-        (answer) => answer.analysis?.feedback.strengths || []
-      )
-    )
-  ).slice(0, 5)
-  const slowdowns = Array.from(
-    new Set(
-      analyzedAnswers.flatMap(
-        (answer) => answer.analysis?.feedback.slowdowns || []
-      )
-    )
-  ).slice(0, 5)
-  const nextFocus = analyzedAnswers
-    .map((answer) => answer.analysis?.feedback.next_focus?.trim())
-    .filter((value): value is string => Boolean(value))
+  const strengths =
+    session.analysis?.strengths && session.analysis.strengths.length > 0
+      ? session.analysis.strengths.slice(0, 5)
+      : Array.from(
+          new Set(
+            analyzedAnswers.flatMap(
+              (answer) => answer.analysis?.feedback.strengths || []
+            )
+          )
+        ).slice(0, 5)
+  const slowdowns =
+    session.analysis?.slowdowns && session.analysis.slowdowns.length > 0
+      ? session.analysis.slowdowns.slice(0, 5)
+      : Array.from(
+          new Set(
+            analyzedAnswers.flatMap(
+              (answer) => answer.analysis?.feedback.slowdowns || []
+            )
+          )
+        ).slice(0, 5)
+  const nextFocus =
+    session.analysis?.next_focus && session.analysis.next_focus.length > 0
+      ? session.analysis.next_focus
+      : analyzedAnswers
+          .map((answer) => answer.analysis?.feedback.next_focus?.trim())
+          .filter((value): value is string => Boolean(value))
   const uniqueNextFocus = Array.from(new Set(nextFocus))
     .filter((value) => value.length > 0)
     .slice(0, 3)
@@ -130,6 +141,7 @@ export default async function ResultsPage({
     : 0
   const weakestEvidence = getEvidence(weakestAnswer)
   const redoHref = `${ROUTES.STUDENT_SESSION_NEW}?batch=${encodeURIComponent(session.batch_id)}&questionSet=${encodeURIComponent(session.question_set_id)}&autostart=1`
+  const coaching = session.analysis?.coaching_summary ?? null
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -174,61 +186,36 @@ export default async function ResultsPage({
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <Card className="border-emerald-200 bg-emerald-50/60">
-          <CardHeader>
-            <CardTitle>Practice Next</CardTitle>
-            <CardDescription>
-              One concrete move to take into the next attempt.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-xl font-semibold text-emerald-950">
-              {primaryNextFocus}
-            </p>
-            <p className="text-sm text-emerald-900/80">
-              The fastest improvement usually comes from repeating the same set
-              while this feedback is still fresh.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Button asChild>
-                <Link href={redoHref}>
-                  <Mic className="mr-1 size-4" />
-                  Redo This Set Now
-                </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="#answer-breakdown">Review Weakest Answer</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+      <CoachingSummaryPanel
+        coaching={coaching}
+        fallback={{
+          title: primaryNextFocus,
+          explanation:
+            "Use this as one focused target for your next attempt while the feedback is still fresh.",
+          successTarget:
+            "Redo this set and apply the same target to every answer.",
+          observation: weakestAnswer
+            ? `The clearest coaching opportunity came from question ${weakestIndex + 1}.`
+            : "Your latest session is ready to turn into one concrete practice target.",
+          evidence: weakestEvidence,
+          drillInstruction:
+            "Answer directly, add one example, then close with the result.",
+          drillPattern: "My answer is... For example... The result was...",
+          progressMessage:
+            "Repeat the set once with this target to make the next result more useful.",
+        }}
+      />
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Biggest Coaching Opportunity</CardTitle>
-            <CardDescription>
-              {weakestAnswer
-                ? `Q${weakestIndex + 1}: ${weakestAnswer.question?.body || weakestAnswer.question_body || "Question"}`
-                : "Keep building consistency."}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">
-              {weakestAnswer?.analysis?.feedback.next_focus || primaryNextFocus}
-            </p>
-            <ul className="space-y-2">
-              {weakestEvidence.map((item, index) => (
-                <li
-                  key={`${item}-${index}`}
-                  className="text-sm text-muted-foreground"
-                >
-                  - {item}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+      <div className="flex flex-wrap gap-2">
+        <Button asChild>
+          <Link href={redoHref}>
+            <Mic className="mr-1 size-4" />
+            Redo This Set Now
+          </Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="#answer-breakdown">Review Weakest Answer</Link>
+        </Button>
       </div>
 
       <FeedbackCards

@@ -7,7 +7,13 @@ import { EmptyState } from "@/components/shared/empty-state"
 import { StatCard } from "@/components/shared/stat-card"
 import { StatusBadge } from "@/components/shared/status-badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { requireUser } from "@/lib/auth/server"
 import { getProgressSummary, listBatches } from "@/lib/server/app-data"
 import { ROUTES } from "@/lib/constants"
@@ -18,6 +24,13 @@ export default async function StudentDashboardPage() {
     getProgressSummary(user).catch(() => null),
     listBatches(user).catch(() => []),
   ])
+  const nextGoal =
+    progress?.coaching_summary?.next_practice_goal.title ||
+    progress?.focus_area ||
+    "Keep practicing"
+  const nextGoalLabel =
+    progress?.coaching_summary?.progress_signal.label ||
+    (progress?.focus_area ? "Focus set" : "Practice")
 
   return (
     <div className="space-y-6">
@@ -50,10 +63,27 @@ export default async function StudentDashboardPage() {
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard title="Sessions Completed" value={progress.total_sessions} icon={Clock} />
-            <StatCard title="Average Score" value={`${Math.round(progress.avg_score)}%`} icon={Target} />
-            <StatCard title="Current Grade" value={progress.current_grade || "N/A"} icon={BarChart3} />
-            <StatCard title="Focus Area" value={progress.focus_area || "Keep practicing"} icon={Target} />
+            <StatCard
+              title="Sessions Completed"
+              value={progress.total_sessions}
+              icon={Clock}
+            />
+            <StatCard
+              title="Average Score"
+              value={`${Math.round(progress.avg_score)}%`}
+              icon={Target}
+            />
+            <StatCard
+              title="Current Grade"
+              value={progress.current_grade || "N/A"}
+              icon={BarChart3}
+            />
+            <StatCard
+              title="Next Goal"
+              value={nextGoalLabel}
+              description={nextGoal}
+              icon={Target}
+            />
           </div>
 
           {progress.recent_sessions.length > 0 ? (
